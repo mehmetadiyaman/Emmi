@@ -273,9 +273,9 @@
   }
 }
 
-/*-----------------------------------*\
+/*
   #RESET
-\*-----------------------------------*/
+*/
 
 *,
 *::before,
@@ -321,13 +321,56 @@ button {
   width: 100%;
 }
 
-/*-----------------------------------*\
+/*
   #BASE
-\*-----------------------------------*/
+*/
 
-/*-----------------------------------*\
+html {
+  font-size: var(--fs-base);
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--on-background);
+  font-family: var(--font-primary);
+  font-size: var(--fs-body-medium);
+  line-height: var(--lh-body-medium);
+  font-weight: var(--fw-regular);
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+input {
+  caret-color: var(--primary);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--surface-container);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--outline);
+  border-radius: var(--radius-full);
+}
+
+/*
   #TYPOGRAPHY
-\*-----------------------------------*/
+*/
 
 .display-large {
   font-size: var(--fs-display-large);
@@ -433,4 +476,232 @@ button {
   font-weight: var(--fw-medium);
   line-height: var(--lh-label-small);
   letter-spacing: var(--ls-p-050);
+}
+
+/*
+  #UTILITIES
+*/
+
+.text-on-surface-variant {
+  color: var(--on-surface-variant);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+/*#RAUSED STYLE
+-----------------------------
+*/
+
+.container {
+  padding-inline: var(--space-4);
+}
+
+:has(> .state-layer) {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.state-layer {
+  position: absolute;
+  inset: 0;
+  background-color: var(--state-layer-bg);
+  opacity: 0;
+  transition: opacity var(--tr-duration-short-2) var(--tr-easing-standard);
+  z-index: -1;
+}
+
+:has(> .state-layer):hover > .state-layer {
+  opacity: 0.08;
+}
+
+:has(> .state-layer):where(:focus, :focus-visible) > .state-layer {
+  opacity: 0.1;
+}
+
+/* #COMPONENTS
+----------------------
+
+/** 
+*Text field
+*/
+
+.text-field-wrapper {
+  position: relative;
+  height: 56px;
+  border-radius: var(--radius-extra-small);
+  box-shadow: inset 0 0 1px var(--outline);
+  background-color: var(--background);
+  transition: box-shadow var(--tr-duration-short-4) var(--tr-easing-standard);
+}
+
+.text-field-wrapper:hover {
+  box-shadow: inset 0 0 0 1px var(--on-surface);
+}
+
+.text-field-wrapper:focus-within {
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+
+.text-field-wrapper.error {
+  box-shadow: inset 0 0 0 1px var(--error);
+}
+
+.text-field-wrapper.error:hover {
+  box-shadow: inset 0 0 0 1px var(--on-error-container);
+}
+
+.text-field-wrapper.error:focus-within {
+  box-shadow: inset 0 0 0 2px var(--error);
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  left: var(--space-2);
+  translate: 0 -50%;
+  color: var(--on-surface-variant);
+  background-color: inherit;
+  padding-inline: var(--space-2);
+  transform-origin: center left;
+  transition: var(--tr-duration-short-4) var(--tr-easing-standard);
+  transition-property: color, translate, scale;
+  pointer-events: none;
+  user-select: none;
+}
+
+.text-field-wrapper:hover .label {
+  color: var(--on-surface);
+}
+
+.text-field-wrapper.error:hover .label,
+.text-field-wrapper:has(.text-field:not(:placeholder-shown)) label {
+  color: var(--on-error-container);
+}
+
+.text-field-wrapper:focus-within .label {
+  translate: 2px -40px;
+  scale: 0.75;
+}
+
+.text-field-wrapper:focus-within .label {
+  color: var(--primary);
+}
+
+.text-field-wrapper.error .label {
+  color: var(--error);
+}
+
+.text-field {
+  height: inherit;
+  color: var(--on-surface);
+  padding-inline: var(--space-4);
+}
+
+.text-field-wrapper.error .text-field {
+  caret-color: var(--error);
+}
+
+.text-field-wrapper.error:hover .text-field {
+  caret-color: var(--on-error-container);
+}
+
+/**
+*ortak button
+*/
+
+.btn {
+  height: 40px;
+  max-width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-full);
+  padding-inline: var(--space-06);
+  cursor: pointer;
+  transition: box-shodow var(--tr-duration-short-2) var(--tr-easing-standard);
+}
+
+.btn-fill {
+  background-color: var(--primary);
+  color: var(--on-primary);
+  --state-layer-bg: var(--on-primary);
+}
+
+.btn-fill:hover:not(:focus, [disabled]) {
+  box-shadow: var(--shadow-1);
+}
+
+:is(.btn-fill)[disabled] {
+  background-color: var(--on-surface-disabled);
+  color: var(--on-surface-disabled-text);
+  pointer-events: none;
+  user-select: none;
+}
+
+/*
+#kayıt ve giriş sayfası
+*/
+
+.form-section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  align-items: center;
+}
+
+.form-card {
+  max-width: 440px;
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+
+.form-card .card-header {
+  text-align: center;
+}
+
+.form-card .logo {
+  max-width: max-content;
+  margin-inline: auto;
+  margin-block-end: var(--space-3);
+}
+
+.form-card .form {
+  display: grid;
+  gap: var(--space-3);
+  margin-block: var(--space-8);
+}
+
+.form-card .card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.form-card .btn {
+  max-width: 100½;
+}
+
+/*RESPONSİVE
+*/
+
+/*kayıt olma sayfası*/
+@media (min-width: 768px) {
+  .form-card {
+    padding: var(--space-10);
+    border-radius: var(--radius-medium);
+    background-color: var(--surface-container);
+  }
+}
+
+.form-card .logo {
+  margin-block-end: var(--space-2);
+}
+
+.form-card .form {
+  margin-block: var(--space-6);
 }
