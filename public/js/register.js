@@ -32,18 +32,20 @@ $form.addEventListener("submit", async (event) => {
     const response = await fetch(`${window.location.origin}/register`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: JSON.stringify(Object.fromEntries(formData.entries())),
+      body: new URLSearchParams(
+        Object.fromEntries(formData.entries())
+      ).toString(),
     });
 
     if (response.ok) {
       window.location = response.url;
     } else {
-      console.error("Hesap oluşturulurken bir hata oluştu.");
+      alert("Hesap oluşturulurken bir hata oluştu.");
     }
   } catch (error) {
-    console.error("Ağ hatası oluştu:", error);
+    alert("Ağ hatası oluştu:", error);
     $submitBtn.removeAttribute("disabled");
   }
 });
