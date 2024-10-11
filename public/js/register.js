@@ -17,7 +17,7 @@ $form.addEventListener("submit", async (event) => {
 
   $submitBtn.setAttribute("disabled", "");
 
-  //form verilerini yakalamak için formdata nesnesi oluşturma
+  //form verilerini yakalamak için formdata nesnesi oluşturm
   const formData = new FormData($form);
   console.log(formData.get("password"));
 
