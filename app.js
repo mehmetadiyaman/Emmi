@@ -41,5 +41,5 @@ app.use("/register", register);
  * başlama servisi
  */
 app.listen(3000, () => {
-  console.log("Servis Dinl  Portu http://localhost:3000");
+  console.log("Servis Dinleme Portu http://localhost:3000");
 });
