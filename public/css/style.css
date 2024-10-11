@@ -532,7 +532,7 @@ button {
   position: relative;
   height: 56px;
   border-radius: var(--radius-extra-small);
-  box-shadow: inset 0 0 1px var(--outline);
+  box-shadow: inset 0 0 0 1px var(--outline);
   background-color: var(--background);
   transition: box-shadow var(--tr-duration-short-4) var(--tr-easing-standard);
 }
@@ -542,7 +542,7 @@ button {
 }
 
 .text-field-wrapper:focus-within {
-  box-shadow: inset 0 0 0 2px var(--primary);
+  box-shadow: inset 0 0 0 3px var(--primary); /* Focus durumunda daha kalın border */
 }
 
 .text-field-wrapper.error {
@@ -554,20 +554,20 @@ button {
 }
 
 .text-field-wrapper.error:focus-within {
-  box-shadow: inset 0 0 0 2px var(--error);
+  box-shadow: inset 0 0 0 3px var(--error); /* Focus durumunda daha kalın border */
 }
 
 .label {
   position: absolute;
   top: 50%;
   left: var(--space-2);
-  translate: 0 -50%;
+  transform: translate(0, -50%);
   color: var(--on-surface-variant);
   background-color: inherit;
   padding-inline: var(--space-2);
   transform-origin: center left;
   transition: var(--tr-duration-short-4) var(--tr-easing-standard);
-  transition-property: color, translate, scale;
+  transition-property: color, transform;
   pointer-events: none;
   user-select: none;
 }
@@ -576,14 +576,13 @@ button {
   color: var(--on-surface);
 }
 
-.text-field-wrapper.error:hover .label,
-.text-field-wrapper:has(.text-field:not(:placeholder-shown)) label {
+.text-field-wrapper.error:hover .label {
   color: var(--on-error-container);
 }
 
-.text-field-wrapper:focus-within .label {
-  translate: 2px -40px;
-  scale: 0.75;
+.text-field-wrapper:focus-within .label,
+.text-field-wrapper:has(.text-field:not(:placeholder-shown)) .label {
+  transform: translate(2px, -40px) scale(0.75); /* Transform kullanıldı */
 }
 
 .text-field-wrapper:focus-within .label {
@@ -614,7 +613,7 @@ button {
 
 .btn {
   height: 40px;
-  max-width: max-content;
+  width: max-content; /* max-width yerine width kullanıldı */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -622,7 +621,7 @@ button {
   border-radius: var(--radius-full);
   padding-inline: var(--space-06);
   cursor: pointer;
-  transition: box-shodow var(--tr-duration-short-2) var(--tr-easing-standard);
+  transition: box-shadow var(--tr-duration-short-2) var(--tr-easing-standard); /* box-shadow yazım hatası düzeltildi */
 }
 
 .btn-fill {
@@ -635,13 +634,13 @@ button {
   box-shadow: var(--shadow-1);
 }
 
-:is(.btn-fill)[disabled] {
+.btn-fill[disabled] {
+  /* :is() kullanımı yerine düz seçici kullanıldı */
   background-color: var(--on-surface-disabled);
   color: var(--on-surface-disabled-text);
   pointer-events: none;
   user-select: none;
 }
-
 /*
 #kayıt ve giriş sayfası
 */
@@ -683,7 +682,9 @@ button {
 }
 
 .form-card .btn {
-  max-width: 100½;
+  max-width: 100%; /* max-width hatası düzeltildi */
+  width: 100%; /* Buton genişliği form kartına yayıldı */
+  height: 48px; /* Yükseklik artırıldı */
 }
 
 /*RESPONSİVE
@@ -691,17 +692,21 @@ button {
 
 /*kayıt olma sayfası*/
 @media (min-width: 768px) {
+  .text-field-wrapper {
+    background-color: var(--surface-container);
+  }
+
   .form-card {
     padding: var(--space-10);
     border-radius: var(--radius-medium);
     background-color: var(--surface-container);
   }
-}
 
-.form-card .logo {
-  margin-block-end: var(--space-2);
-}
+  .form-card .logo {
+    margin-block-end: var(--space-2);
+  }
 
-.form-card .form {
-  margin-block: var(--space-6);
+  .form-card .form {
+    margin-block: var(--space-6);
+  }
 }

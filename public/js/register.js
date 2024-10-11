@@ -19,28 +19,31 @@ $form.addEventListener("submit", async (event) => {
 
   //form verilerini yakalamak için formdata nesnesi oluşturm
   const formData = new FormData($form);
-  console.log(formData.get("password"));
-
   //şifre ve tekrarının eşleşmediği durumlarda
   if (formData.get("password") !== formData.get("confirm_password")) {
     //gönder butonu etkinleştir ve hatta mesajını göster
     $submitBtn.removeAttribute("disabled");
-    console.error("Lütfen aynı şifreyi girdiğinizden emin olun.");
+    alert("Lütfen aynı şifreyi girdiğinizden emin olun.");
     return;
   }
 
   //sunucuya hesap oluşturma isteği gönder
-  const response = await fetch("${window.location.origin}/register", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: new URLSearchParams(
-      Object.fromEntries(formData.entries())
-    ).toString(),
-  });
+  try {
+    const response = await fetch(`${window.location.origin}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(Object.fromEntries(formData.entries())),
+    });
 
-  if (response.ok) {
-    return (window.location = response.url);
+    if (response.ok) {
+      window.location = response.url;
+    } else {
+      console.error("Hesap oluşturulurken bir hata oluştu.");
+    }
+  } catch (error) {
+    console.error("Ağ hatası oluştu:", error);
+    $submitBtn.removeAttribute("disabled");
   }
 });
