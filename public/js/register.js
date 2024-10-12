@@ -45,7 +45,7 @@ $form.addEventListener("submit", async (event) => {
       alert("Hesap oluşturulurken bir hata oluştu.");
     }
   } catch (error) {
-    alert("Ağ hatası oluştu:", error);
+    alert(`Ağ hatası oluştu: ${error.message}`);
     $submitBtn.removeAttribute("disabled");
   }
 });
