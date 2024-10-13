@@ -9,12 +9,15 @@
  */
 const express = require("express");
 require("dotenv").config();
-
+const session = require("express-session"); // express-session kullanımı
+const MongoStore = require("connect-mongo");
 /**
  * özel modüller
  */
 const register = require("./src/routes/register_route");
+const login = require("./src/routes/login_route");
 const { connectDB, disconnectDB } = require("./src/config/mongoose_config");
+const { collection } = require("./src/models/user_model");
 
 /**
  * ilk ekspres
@@ -36,7 +39,39 @@ app.use(express.static(__dirname + "/public"));
  */
 app.use(express.urlencoded({ extended: true }));
 
+/**
+ * sessions depolanması
+ */
+const store = MongoStore.create({
+  mongoUrl: process.env.MONGO_CONNECTION_URI,
+  collectionName: "sessions",
+  dbName: "Emmi",
+});
+
+/**
+ * express sessions
+ */
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    store, // Doğru şekilde store kullanımı
+    cookie: {
+      maxAge: Number(process.env.SESSION_MAX_AGE), // 'cokkie' yerine 'cookie' olmalı
+    },
+  })
+);
+
+/**
+ * kayıt sayfası
+ */
 app.use("/register", register);
+
+/**
+ * giriş sayfası
+ */
+app.use("/login", login);
 
 /**
  * başlama servisi

@@ -48,8 +48,28 @@ const postRegister = async (req, res) => {
     //başarılı kayıt sonrası kullanıcıyı oturum açmaya yönlendir
     res.redirect("/login");
   } catch (error) {
-    console.error(error);
-    res.status(500).send("Bir hata oluştu.");
+    if (error.code == 11000) {
+      if (error.keyPattern.email) {
+        return res
+          .status(400)
+          .send({
+            message:
+              "Bu e-posta adresi daha önce bir hesapla ilişkilendirilmiş",
+          });
+      }
+      if (error.keyPattern.username) {
+        return res
+          .status(400)
+          .send({ message: "Bu kullanıcı adı zaten kullanımda" });
+      }
+    } else {
+      return res
+        .status(400)
+        .send({ message: `kayıt başarısız oldu.<br>${error.message}` }); // backtick (`) kullanıldı
+    }
+
+    console.log("postRegister: ", error.message);
+    throw error;
   }
 };
 

@@ -5,6 +5,12 @@
 
 "use strict";
 
+/**
+ * import module
+ */
+
+import Snackbar from "./snackbar.js";
+
 const $form = document.querySelector("[data-form]");
 const $submitBtn = document.querySelector("[data-submit-btn]");
 
@@ -23,29 +29,36 @@ $form.addEventListener("submit", async (event) => {
   if (formData.get("password") !== formData.get("confirm_password")) {
     //gönder butonu etkinleştir ve hatta mesajını göster
     $submitBtn.removeAttribute("disabled");
-    alert("Lütfen aynı şifreyi girdiğinizden emin olun.");
+    Snackbar({
+      type: "error",
+      message: "Lütfen aynı şifreyi girdiğinizden emin olun.",
+    });
     return;
   }
 
   //sunucuya hesap oluşturma isteği gönder
-  try {
-    const response = await fetch(`${window.location.origin}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams(
-        Object.fromEntries(formData.entries())
-      ).toString(),
-    });
+  const response = await fetch(`${window.location.origin}/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: new URLSearchParams(
+      Object.fromEntries(formData.entries())
+    ).toString(),
+  });
 
-    if (response.ok) {
-      window.location = response.url;
-    } else {
-      alert("Hesap oluşturulurken bir hata oluştu.");
-    }
-  } catch (error) {
-    alert(`Ağ hatası oluştu: ${error.message}`);
+  if (response.ok) {
+    return (window.location = response.url);
+  }
+
+  //Yanıt durumu 400 olanları elle al
+  if (response.status == 400) {
+    //gönder düğmesini etkinleştir ve hatta mesajını göster
     $submitBtn.removeAttribute("disabled");
+    const { message } = await response.json();
+    Snackbar({
+      type: "error",
+      message,
+    });
   }
 });

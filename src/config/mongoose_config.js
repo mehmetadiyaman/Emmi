@@ -19,6 +19,7 @@ const ClientOptions = {
     strict: true,
     deprecationErrors: true,
   },
+  dbName: "Emmi",
 };
 
 /**
