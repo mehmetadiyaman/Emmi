@@ -22,6 +22,11 @@ const genarateUsername = require("../utils/genarate_username_util");
  */
 
 const renderRegister = (req, res) => {
+  const { userAuthenticated } = req.session.user || {};
+  //kullanıcının zaten oturum açtığı durumu ele al
+  if (userAuthenticated) {
+    return res.redirect("./");
+  }
   res.render("./pages/register");
 };
 
@@ -50,12 +55,9 @@ const postRegister = async (req, res) => {
   } catch (error) {
     if (error.code == 11000) {
       if (error.keyPattern.email) {
-        return res
-          .status(400)
-          .send({
-            message:
-              "Bu e-posta adresi daha önce bir hesapla ilişkilendirilmiş",
-          });
+        return res.status(400).send({
+          message: "Bu e-posta adresi daha önce bir hesapla ilişkilendirilmiş",
+        });
       }
       if (error.keyPattern.username) {
         return res

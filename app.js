@@ -18,7 +18,7 @@ const register = require("./src/routes/register_route");
 const login = require("./src/routes/login_route");
 const { connectDB, disconnectDB } = require("./src/config/mongoose_config");
 const { collection } = require("./src/models/user_model");
-
+const home = require("./src/routes/home_route");
 /**
  * ilk ekspres
  */
@@ -72,6 +72,11 @@ app.use("/register", register);
  * giriş sayfası
  */
 app.use("/login", login);
+
+/**
+ * Ana sayfa
+ */
+app.use("/", home);
 
 /**
  * başlama servisi

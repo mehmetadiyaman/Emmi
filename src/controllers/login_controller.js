@@ -25,6 +25,11 @@ const { render } = require("ejs");
  */
 
 const renderLogin = (req, res) => {
+  const { userAuthenticated } = req.session.user || {};
+  //kullanıcının zaten oturum açtığı durumu ele al
+  if (userAuthenticated) {
+    return res.redirect("./");
+  }
   res.render("./pages/login");
 };
 
