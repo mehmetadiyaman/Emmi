@@ -12,10 +12,20 @@
  */
 
 const imagePreview = async function ($imageField, $previewElement) {
-  console.log($imageField.files);
+  
   const imageObjectUrl = URL.createObjectURL($imageField.files[0]);
-  console.log(imageObjectUrl);
+  
   // Resmi önizleme alanına atama gibi işlemleri burada yapabilirsiniz.
+  const $image = document.createElement('img');
+  $image.classList.add('img-cover');
+  $image.src = imageObjectUrl;
+
+  $previewElement.append($image); 
+  $previewElement.classList.add('show');
+  
+  return imageObjectUrl;
+
+
 };
 
 export default imagePreview;

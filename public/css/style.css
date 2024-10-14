@@ -569,7 +569,7 @@ span.aterial-symbols-rounded {
   display: block;
 }
 
-.image-cover {
+.img-cover {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -737,7 +737,7 @@ span.aterial-symbols-rounded {
 Snackbar
 */
 
-.stackbar-wrapper {
+.snackbar-wrapper {
   position: fixed;
   left: var(--space-4);
   right: var(--space-4);
