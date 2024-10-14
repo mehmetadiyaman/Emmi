@@ -19,6 +19,8 @@ const login = require("./src/routes/login_route");
 const { connectDB, disconnectDB } = require("./src/config/mongoose_config");
 const { collection } = require("./src/models/user_model");
 const home = require("./src/routes/home_route");
+const createBlog = require("./src/routes/create_blog_route");
+
 /**
  * ilk ekspres
  */
@@ -58,7 +60,7 @@ app.use(
     saveUninitialized: false,
     store, // Doğru şekilde store kullanımı
     cookie: {
-      maxAge: Number(process.env.SESSION_MAX_AGE), // 'cokkie' yerine 'cookie' olmalı
+      maxAge: Number(process.env.SESSION_MAX_AGE),
     },
   })
 );
@@ -79,9 +81,14 @@ app.use("/login", login);
 app.use("/", home);
 
 /**
+ * Blog oluşturma sayfası
+ */
+app.use("/createblog", createBlog);
+
+/**
  * başlama servisi
  */
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 const server = app.listen(PORT, async () => {
   console.log(`Servis Dinleme Portu http://localhost:${PORT}`); // Düzeltildi
   await connectDB(process.env.MONGO_CONNECTION_URI);

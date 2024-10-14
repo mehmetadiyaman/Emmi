@@ -539,6 +539,54 @@ span.aterial-symbols-rounded {
   text-overflow: ellipsis;
 }
 
+.main {
+  padding-block-start: var(--top-app-bar-height);
+  min-height: calc(100vh - var(--footer-height));
+  min-height: calc(100dvh - var(--footer-height));
+}
+
+.page {
+  padding-block: var(--space-5);
+}
+
+.page-title {
+  margin-block-end: var(--space-4);
+}
+
+.image-field-wrapper {
+  position: relative;
+  border: 1px dashed var(--outline-variant);
+  overflow: hidden;
+}
+
+.image-preview {
+  width: 100%;
+  overflow: hidden;
+  display: none;
+}
+
+.image-field-wrapper .image-preview.show {
+  display: block;
+}
+
+.image-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-field-wrapper .icon-btn {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  display: none;
+}
+
+.image-field-wrapper:has(.image-preview.show) .icon-btn {
+  display: grid;
+}
+
 /* #COMPONENTS
 ----------------------
 
@@ -652,8 +700,7 @@ span.aterial-symbols-rounded {
   box-shadow: var(--shadow-1);
 }
 
-.btn-fill[disabled] {
-  /* :is() kullanımı yerine düz seçici kullanıldı */
+:is(.btn-fill, .btn.filled-tonal)[disabled] {
   background-color: var(--on-surface-disabled);
   color: var(--on-surface-disabled-text);
   pointer-events: none;
@@ -675,6 +722,15 @@ span.aterial-symbols-rounded {
 }
 .btn:has(> .leading-icon) {
   padding-inline-end: var(--space-4);
+}
+.btn:has(> .trailing-icon) {
+  padding-inline-end: var(--space-4);
+}
+
+.btn.filled-tonal {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary-container);
+  --state-layer-bg: var(--on-secondary-container);
 }
 
 /**
@@ -772,6 +828,11 @@ Snackbar
   margin-inline-start: var(--space-6);
 }
 
+.top-app-bar:has(> .icon-btn) .logo {
+  margin-inline-end: auto;
+  margin-inline-start: var(--space-4);
+}
+
 /*
 #Menü
 */
@@ -851,6 +912,12 @@ Snackbar
   place-items: center;
   border-radius: var(--radius-full);
   --state-layer-bg: var(--on-surface);
+}
+
+.icon-btn-filled-tonal {
+  background-color: var(--surface-container-highest);
+  color: var(--on-surface-variant);
+  --state-layer-bg: var(var(--on-surface-variant));
 }
 
 /*
@@ -944,9 +1011,67 @@ Snackbar
   height: 48px; /* Yükseklik artırıldı */
 }
 
-/*RESPONSİVE
+/*Footer
 */
+.footer {
+  height: var(--footer-height);
+  padding-block: var(--space-5);
+  text-align: center;
+  color: var(--on-surface-variant);
+  border-block-start: 1px solid var(--outline-variant);
+}
 
+.footer .container {
+  opacity: 0.8;
+}
+
+/*Blog oluşturma
+*/
+.blog-write-form {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background-color: var(--surface-container);
+  border-radius: var(--radius-large);
+}
+
+.create-blog-page .image-field-wrapper {
+  display: flex;
+  min-height: 200px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-4);
+  border-radius: var(--radius-large);
+}
+
+.image-field-wrapper .text {
+  text-align: center;
+  padding-inline: var(--space-4);
+  opacity: 0.8;
+}
+
+.create-blog-page .image-preview {
+  aspect-ratio: 21/9;
+}
+
+.create-blog-page:has(.image-preview.show)
+  :where(.image-field, .text, .image-field-wrapper .btn) {
+  display: none;
+}
+
+.create-blog-page :where(.title-field, .textarea) {
+  font-family: var(--font-monospace);
+}
+
+.create-blog-page .textarea {
+  resize: none;
+}
+
+.create-blog-page .footer-actions {
+  display: flex;
+  justify-content: flex-end;
+}
 /*kayıt olma sayfası*/
 @media (min-width: 768px) {
   .text-field-wrapper {

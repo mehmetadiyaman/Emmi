@@ -33,3 +33,27 @@ $menuWrappers?.forEach(function ($menuWrapper) {
     $menu.classList.toggle("active");
   });
 });
+
+/**
+ * Blog oluşturma sayfasında geri düğmesi işlevi
+ */
+const $backBtn = document.querySelector("[data-back-btn]");
+const handleBackward = function () {
+  window.history.back();
+};
+$backBtn?.addEventListener("click", handleBackward);
+
+/**
+ * form yazı yüksekliği otomatik ayarla
+ */
+const $autoHeightTextarea = document.querySelector(
+  "[data-textarea-auto-height]"
+);
+const textareaAutoHeight = function () {
+  this.style.height = this.scrollHeight + "px";
+  this.style.maxHeight = this.scrollHeight + "px";
+};
+$autoHeightTextarea?.addEventListener("input", textareaAutoHeight);
+
+//başlangıç ​​metin alanı yüksekliğini ayarla
+$autoHeightTextarea && textareaAutoHeight.call($autoHeightTextarea);

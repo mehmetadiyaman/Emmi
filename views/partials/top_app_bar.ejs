@@ -1,6 +1,19 @@
-<% const{ userAuthenticated, name,username, } = locals.sessionUser ||{}; %>
+<% const { userAuthenticated, name, username } = locals.sessionUser || {}; %>
 
 <header class="top-app-bar" data-top-app-bar>
+  <% if (locals.route === '/createblog') { %>
+  <button
+    class="icon-btn filled-tonal"
+    aria-label="Önceki sayfaya git"
+    data-back-btn
+  >
+    <span class="material-symbols-rounded" aria-hidden="true"
+      >chevron_left</span
+    >
+    <div class="state-layer"></div>
+  </button>
+  <% } %>
+
   <a href="/" class="logo">
     <img
       src="/images/logo-light.svg"
@@ -17,35 +30,38 @@
       class="dark"
     />
   </a>
+
   <div class="trailing-action-wrapper">
-    <% if (userAuthenticated) { %>
+    <% if (userAuthenticated) { %> <% if (locals.route !== '/createblog') { %>
     <a href="/createblog" class="btn btn-fill">
       <span class="material-symbols-rounded leading-icon">edit</span>
       <p class="label-large">Yaz</p>
       <div class="state-layer"></div>
     </a>
+    <% } %>
+
     <div class="menu-wrapper" data-menu-wrapper>
       <button class="icon-btn" data-menu-toggler>
         <div class="avatar">
-          <p class="tittle-medium"><%=name.at()%></p>
+          <p class="title-medium"><%= name.at() %></p>
         </div>
         <div class="state-layer"></div>
       </button>
       <div class="menu" data-menu>
         <div class="list-item small">
           <div class="avatar">
-            <p class="tittle-medium"><%=name.at()%></p>
+            <p class="title-medium"><%= name.at() %></p>
           </div>
           <div>
             <p class="label-small text-primary truncate-oneline">
-              <%=username%>
+              <%= username %>
             </p>
-            <p class="body-large text-on-surface"><%=name%></p>
+            <p class="body-large text-on-surface"><%= name %></p>
           </div>
           <div class="state-layer">
             <a
-              href="/profile/<%=username%>"
-              tittle="<%=name%>"
+              href="/profile/<%= username %>"
+              title="<%= name %>"
               class="list-item-link"
             ></a>
           </div>
@@ -86,8 +102,7 @@
         </div>
       </div>
     </div>
-    <% }else{ %>
-
+    <% } else { %>
     <a href="/login" class="btn btn-text">
       <p class="label-large">Giriş yap</p>
       <div class="state-layer"></div>
@@ -97,14 +112,12 @@
       <p class="label-large">Hesap oluştur</p>
       <div class="state-layer"></div>
     </a>
-
     <% } %>
   </div>
 
   <!--
-  #İlerleme Çubuğu
-  -->
-
+    #İlerleme Çubuğu
+    -->
   <div class="progress-bar" data-progress-bar>
     <div class="progress-active-indicator"></div>
     <div class="progress-track"></div>
