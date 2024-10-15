@@ -21,9 +21,15 @@ const {
 /**
  * özel modüller
  */
-const { renderCreateBlog } = require("../controllers/create_blog_controller");
+const {
+  renderCreateBlog,
+  postCreateBlog,
+} = require("../controllers/create_blog_controller");
 
 //GET route:Blog oluşturma sayfasını oluştur
 router.get("/", renderCreateBlog);
+
+//POST route:Blog oluşturma sayfasını oluştur
+router.post("/", postCreateBlog);
 
 module.exports = router;

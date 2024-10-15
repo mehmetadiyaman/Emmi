@@ -9,7 +9,22 @@
     #Üst uygulama çubuğu
     -->
     <%- include("../partials/top_app_bar")%>
-    <main class="main"></main>
+
+    <main class="main">
+      <!--
+    #Home 
+    -->
+      <article class="page home-page">
+        <div class="container">
+          <h2 class="headline-small page-title text-on-surface">Son Bloglar</h2>
+          <div class="blog-list">
+            <% if (locals.latestBlogs.length) { %> <%
+            locals.latestBlogs.forEach(blog => { %> <%-
+            include('../partials/card',{blog})%> <% }) %> <% } %>
+          </div>
+        </div>
+      </article>
+    </main>
     <!--
     #Footer
     -->

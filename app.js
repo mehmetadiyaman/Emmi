@@ -42,6 +42,11 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 
 /**
+ * json gövdelerini ayrıştır
+ */
+app.use(express.json({ limit: "10mb" }));
+
+/**
  * sessions depolanması
  */
 const store = MongoStore.create({
