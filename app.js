@@ -20,7 +20,9 @@ const { connectDB, disconnectDB } = require("./src/config/mongoose_config");
 const { collection } = require("./src/models/user_model");
 const home = require("./src/routes/home_route");
 const createBlog = require("./src/routes/create_blog_route");
-
+const logout = require("./src/routes/logout_route");
+const userAuth = require("./src/middlewares/user_auth_middleware");
+const blogDetail = require("./src/routes/blog_detail_route");
 /**
  * ilk ekspres
  */
@@ -76,9 +78,25 @@ app.use(
 app.use("/register", register);
 
 /**
+ * kullanıcı yetkilendirmesi
+ */
+
+app.use(userAuth);
+
+/**
+ *  Blog ayrıntı sayfası
+ */
+app.use("/blog", blogDetail);
+
+/**
  * giriş sayfası
  */
 app.use("/login", login);
+
+/**
+ * Çıkış yap
+ */
+app.use("/logout", logout);
 
 /**
  * Ana sayfa

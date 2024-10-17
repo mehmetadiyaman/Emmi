@@ -1,0 +1,24 @@
+<% const { _id:currentBlogId, banner:{ url:bannerURL }, title, content, owner:{
+name:authorName, profilePhoto:{ url:profilePhoto }={}, username:authorUsername
+}, reaction, readingTime, totalBookmark, createdAt }=locals.blog; const
+compressedBannerURL=bannerURL?.replace("/upload","upload/w_960,h_420,c_auto/q_auto/f_auto");
+%>
+
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <%- include('../layouts/head', { title: `${title} | Emmi` }) %>
+    <script src="/js/script.js" defer></script>
+  </head>
+  <body>
+    <!--
+    # Üst uygulama çubuğu
+    -->
+    <%- include("../partials/top_app_bar") %>
+    <main class="main"></main>
+    <!--
+    # Footer
+    -->
+    <%- include("../layouts/footer") %>
+  </body>
+</html>

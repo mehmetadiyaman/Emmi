@@ -55,13 +55,13 @@ const postCreateBlog = async (req, res) => {
       readingTime: getReadingTime(content),
     });
 
-    //Kullanıcıların blog verilerini güncelleme
+    //Kullanıcıların blog veclorilerini güncelleme
     user.blogs.push(newBlog._id);
     user.blogPublished++;
     await user.save();
 
     //Yeni oluşturulan blog yazısı sayfasına yönlendir
-    res.redirecet(`blogs/${newBlog._id}`);
+    res.redirect(`blogs/${newBlog._id}`);
   } catch (error) {
     // Herhangi bir hata oluştuğunda log tut ve istemciye hata yanıtı gönder
     console.error("Blog oluşturulurken bir hata oluştu:", error.message);

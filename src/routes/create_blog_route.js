@@ -14,14 +14,6 @@ const router = require("express").Router(); // Düzeltildi
  * özel modüller
  */
 const {
-  renderRegister,
-  postRegister,
-} = require("../controllers/register_controller");
-
-/**
- * özel modüller
- */
-const {
   renderCreateBlog,
   postCreateBlog,
 } = require("../controllers/create_blog_controller");

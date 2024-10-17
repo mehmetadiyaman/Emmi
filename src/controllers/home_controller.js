@@ -9,6 +9,7 @@
  * özel modüller
  */
 const Blog = require("../models/blog_model");
+const getPagination = require("../utils/get_pagination_util");
 
 /**
  * Ana sayfaya blog verilerini işleme ve denetleme
@@ -18,6 +19,10 @@ const Blog = require("../models/blog_model");
  */
 const renderHome = async (req, res) => {
   try {
+    //Oluşturulan toplam miktarı al
+    const totalBlogs = await Blog.countDocuments();
+    //sayfalandırma nesnesini al(pagination)
+    const pagination = getPagination("/", req.params, 2, totalBlogs);
     //Veritabanında belirli alanları owner fiel ile doldurma
     const latestBlogs = await Blog.find()
       .select(
@@ -27,11 +32,13 @@ const renderHome = async (req, res) => {
         path: "owner",
         select: "name username profilePhoto",
       })
-      .sort({ createdAt: "desc" });
-    console.log(latestBlogs);
+      .sort({ createdAt: "desc" })
+      .limit(pagination.limit)
+      .skip(pagination.skip);
     res.render("./pages/home", {
       sessionUser: req.session.user,
       latestBlogs,
+      pagination,
     });
   } catch (error) {
     //Ana sayfa oluşturulmasında hatta varsa log kontrolü yap

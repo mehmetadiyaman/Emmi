@@ -24,6 +24,6 @@ const {
 const renderHome = require("../controllers/home_controller");
 
 //GET route:Ana sayfayı göster
-router.get("/", renderHome);
+router.get(["/", "/page/:pageNumber"], renderHome);
 
 module.exports = router;

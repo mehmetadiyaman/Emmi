@@ -486,8 +486,15 @@ button {
   color: var(--on-surface-variant);
 }
 
+.text-on-surface {
+  color: var(--on-surface);
+}
+
 .text-primary {
   color: var(--primary);
+}
+.icon-small {
+  font-size: 18px;
 }
 
 /*#RAUSED STYLE
@@ -585,6 +592,18 @@ span.aterial-symbols-rounded {
 
 .image-field-wrapper:has(.image-preview.show) .icon-btn {
   display: grid;
+}
+
+.img-holder {
+  aspect-ratio: 21/9;
+  overflow: hidden;
+  background-color: var(--outline);
+}
+
+.blog-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
 }
 
 /* #COMPONENTS
@@ -965,6 +984,61 @@ Snackbar
     var(--tr-easing-emphasized-accelerate);
 }
 
+/**
+*Card
+*/
+
+.card {
+  background-color: var(--surface-container-highest);
+  border-radius: var(--radius-medium);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  --state-layer-bg: var(--on-surface);
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: var((var(--space-3)));
+  margin-block-end: var(--space-3);
+}
+
+.card-meta .trailing-text {
+  margin-inline: auto;
+}
+
+.card .card-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: var(--space-4);
+  border-block-start: 1px solid var(--surface-variant);
+}
+
+.card-footer .wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/*
+#Pagination 
+*/
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-start: var(--space-4);
+}
 /*
 #Kayıt ve giriş sayfası
 */
