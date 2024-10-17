@@ -1,7 +1,7 @@
 <% const { _id:currentBlogId, banner:{ url:bannerURL }, title, content, owner:{
 name:authorName, profilePhoto:{ url:profilePhoto }={}, username:authorUsername
 }, reaction, readingTime, totalBookmark, createdAt }=locals.blog; const
-compressedBannerURL=bannerURL?.replace("/upload","upload/w_960,h_420,c_auto/q_auto/f_auto");
+compressedBannerURL=bannerURL?.replace("upload/", "upload/w_960,h_420,c_auto/q_auto/f_auto/");
 %>
 
 <!DOCTYPE html>
@@ -15,10 +15,32 @@ compressedBannerURL=bannerURL?.replace("/upload","upload/w_960,h_420,c_auto/q_au
     # Üst uygulama çubuğu
     -->
     <%- include("../partials/top_app_bar") %>
-    <main class="main"></main>
+    <main class="main">
+                <!--blog detayları -->
+      <div class="page blog-detail-page">
+        <div class="container">
+           <article class="blog-detail">
+            <figure class="blog-banner img-holder">
+              <img src="<%=compressedBannerURL%>" width="960" height="420"
+               alt="<%=title%>" class="img cover">
+            </figure>
+                  <div class="blog-author">
+                    
+                  </div>
+
+           </article>
+
+        </div>
+
+
+       </div>
+
+         
+    </main>
     <!--
     # Footer
     -->
     <%- include("../layouts/footer") %>
+    
   </body>
 </html>
