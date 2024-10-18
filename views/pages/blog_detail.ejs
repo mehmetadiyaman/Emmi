@@ -1,7 +1,7 @@
 <% const { _id:currentBlogId, banner:{ url:bannerURL }, title, content, owner:{
-name:authorName, profilePhoto:{ url:profilePhoto }={}, username:authorUsername
-}, reaction, readingTime, totalBookmark, createdAt }=locals.blog; const
-compressedBannerURL=bannerURL?.replace("upload/",
+name:authorName, profilePhoto:{ url:profilePhotoURL }={},
+username:authorUsername }, reaction, readingTime, totalBookmark, createdAt
+}=locals.blog; const compressedBannerURL=bannerURL?.replace("upload/",
 "upload/w_960,h_420,c_auto/q_auto/f_auto/"); %>
 
 <!DOCTYPE html>
@@ -29,7 +29,20 @@ compressedBannerURL=bannerURL?.replace("upload/",
                 class="img cover"
               />
             </figure>
-            <div class="blog-author"></div>
+            <div class="blog-author">
+              <p class="avatar title-medium"><%=authorName.at()%></p>
+              <div class="leading-text">
+                <a
+                  href="/profile/<%= authorUsername %>"
+                  class="title-medium text-on-surface text-link"
+                  ><%= authorName %></a
+                >
+                <p class="body-small text-on-surface-variant">
+                  Yayınlandı <%=new
+                  Date(createdAt).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})%>
+                </p>
+              </div>
+            </div>
           </article>
         </div>
       </div>

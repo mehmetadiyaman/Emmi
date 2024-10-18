@@ -42,10 +42,9 @@ const renderBlogDetail = async (req, res) => {
       path: "owner",
       select: "name username profilePhoto",
     });
-    console.log(blog);
 
     // Sahibinden daha fazla blog al
-    const ownerBlogs = await Blog.find({ owner: blog.owner._id }) // 'blog' nesnesini burada kullanıyoruz
+    const ownerBlogs = await Blog.find({ owner: { _id: blog.owner._id } }) // 'blog' nesnesini burada kullanıyoruz
       .select("title reaction totalBookmark owner readingTime createdAt")
       .populate({
         path: "owner",

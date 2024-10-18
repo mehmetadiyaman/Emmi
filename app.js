@@ -77,11 +77,6 @@ app.use(
 app.use("/register", register);
 
 /**
- *  Blog ayrıntı sayfası
- */
-app.use("/blog", blogDetail);
-
-/**
  * giriş sayfası
  */
 app.use("/login", login);
@@ -95,6 +90,11 @@ app.use("/logout", logout);
  * Ana sayfa
  */
 app.use("/", home);
+
+/**
+ *  Blog ayrıntı sayfası
+ */
+app.use("/blogs", blogDetail);
 
 /**
  * kullanıcı yetkilendirmesi

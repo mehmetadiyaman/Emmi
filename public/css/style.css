@@ -528,7 +528,7 @@ button {
   opacity: 0.1;
 }
 
-span.aterial-symbols-rounded {
+span.material-symbols-rounded {
   display: block;
   height: 1em;
   width: 1em;
@@ -729,7 +729,7 @@ span.aterial-symbols-rounded {
 .btn-text {
   padding-inline: var(--space-3);
   color: var(--primary);
-  --state-layer-bg: var(var(--primary));
+  --state-layer-bg: var(--primary);
 }
 
 .btn :where(.leading-icon, .trailing-icon) {
