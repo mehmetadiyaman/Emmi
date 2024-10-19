@@ -14,6 +14,7 @@ const mongoose = require("mongoose");
  * özel modüller
  */
 const Blog = require("../models/blog_model");
+const markdown = require("../config/markdown_it_config");
 
 /**
  * @param {object} req
@@ -59,6 +60,7 @@ const renderBlogDetail = async (req, res) => {
       sessionUser: req.session.user,
       blog,
       ownerBlogs,
+      markdown,
     });
   } catch (error) {
     console.error(

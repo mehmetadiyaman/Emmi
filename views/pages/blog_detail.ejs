@@ -8,7 +8,22 @@ username:authorUsername }, reaction, readingTime, totalBookmark, createdAt
 <html lang="tr">
   <head>
     <%- include('../layouts/head', { title: `${title} | Emmi` }) %>
+    <script src="/js/reaction.js" defer></script>
     <script src="/js/script.js" defer></script>
+    <link
+      rel="stylesheet"
+      media="(prefers-color-scheme:dark)"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github-dark.min.css"
+    />
+    <link
+      rel="stylesheet"
+      media="(prefers-color-scheme:light)"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/styles/github.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.10.0/highlight.min.js"></script>
+    <script>
+      hljs.highlightAll();
+    </script>
   </head>
   <body>
     <!--
@@ -39,11 +54,66 @@ username:authorUsername }, reaction, readingTime, totalBookmark, createdAt
                 >
                 <p class="body-small text-on-surface-variant">
                   Yayınlandı <%=new
-                  Date(createdAt).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})%>
+                  Date(createdAt).toLocaleDateString('tr-TR',{month:'long',day:'numeric',year:'numeric'})%>
+                </p>
+              </div>
+              <% if(authorUsername==locals.sessionUser?.username) {%>
+              <a href="/blogs/<%=currentBlogId%>/edit" class="btn filled-tonal">
+                <span
+                  class="material-symbols-rounded leading-icon"
+                  aria-hidden="true"
+                  >edit</span
+                >
+                <p class="label-large">Düzenle</p>
+                <div class="state-layer"></div>
+              </a>
+              <% } %>
+            </div>
+            <div class="blog-content">
+              <h1 class="title headline-large text-on-surface"><%=title%></h1>
+              <div class="content-markdown text-on-surface-variant">
+                <%- locals.markdown.render(content) %>
+              </div>
+            </div>
+            <div class="blog-actions">
+              <div class="action-item">
+                <button class="icon-btn filled-tonal" data-reaction-btn>
+                  <span class="material-symbols-rounded icon" aria-hidden="true"
+                    >favorite</span
+                  >
+                  <div class="state-layer"></div>
+                </button>
+                <p class="label-large text-on-surface-variant">
+                  <span data-reaction-number><%=reaction%></span> Reaksiyonlar
+                </p>
+              </div>
+              <div class="action-item">
+                <button class="icon-btn filled-tonal" data-reading-list-btn>
+                  <span class="material-symbols-rounded icon" aria-hidden="true"
+                    >bookmark</span
+                  >
+                  <div class="state-layer"></div>
+                </button>
+                <p class="label-large text-on-surface-variant">
+                  <span data-reading-list-number><%=totalBookmark%></span>
+                  Kaydedilenler
                 </p>
               </div>
             </div>
           </article>
+
+          <!--
+          # Daha Fazla Blog
+          -->
+          <% if (locals.ownerBlogs.length) { %>
+          <section class="more-blog">
+            <h2 class="title title-large text-on-surface">Daha fazla</h2>
+            <div class="blog-list">
+              <% locals.ownerBlogs.forEach(blog=>{%> <%-
+              include('../partials/card',{blog}) %> <% }) %>
+            </div>
+          </section>
+          <% } %>
         </div>
       </div>
     </main>
