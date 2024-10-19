@@ -56,7 +56,7 @@ const renderBlogDetail = async (req, res) => {
       .limit(3); // Limit değeri verildi
 
     res.render("./pages/blog_detail", {
-      SessionUser: req.session.user,
+      sessionUser: req.session.user,
       blog,
       ownerBlogs,
     });
