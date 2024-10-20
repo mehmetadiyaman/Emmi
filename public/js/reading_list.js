@@ -24,7 +24,7 @@ const addToReadingList = async () => {
     }
 
     //401 oturum açmamış durumu elle al
-    if (response == 401) {
+    if (response.status == 401) {
       //giriş için iletişim kutusu göster
       console.log("giriş yapınız");
     }
