@@ -27,6 +27,11 @@ const blogDetail = require("./src/routes/blog_detail_route");
  */
 const app = express();
 
+
+
+
+
+
 /**
  * görünüm kısmını ayarla
  */
