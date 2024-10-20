@@ -10,8 +10,8 @@ readingList:userReadingListedBlogs, reactedBlogs:userReactedBlogs }=locals.user
 <html lang="tr">
   <head>
     <%- include('../layouts/head', { title: `${title} | Emmi` }) %>
-    <script src="/js/reaction.js" defer></script>
-    <script src="/js/reading_list.js" defer></script>
+    <script type="module" src="/js/reaction.js" defer></script>
+    <script type="module" src="/js/reading_list.js" defer></script>
     <script src="/js/script.js" defer></script>
     <link
       rel="stylesheet"

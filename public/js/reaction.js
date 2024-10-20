@@ -8,6 +8,7 @@
 /**
  * özel modüller
  */
+import dialog from "./dialog.js";
 
 //Reacsiyon düğmesi ve numarasını seçme
 const $reactionBtn = document.querySelector("[data-reaction-btn]");
@@ -40,9 +41,13 @@ const addReaction = async () => {
     }
 
     //401 oturum açmamış durumu elle al
-    if (response == 401) {
-      //giriş için iletişim kutusu göster
-      console.log("giriş yapınız");
+    if (response.status == 401) {
+      const $dialog = dialog({
+        title: "Devam etmek için lütfen giriş yapınız",
+        content:
+          "Biz kodlayıcıların paylaşımda bulunduğu,güncel kaldığı ve kariyerlerini geliştirdiği bir yeriz",
+      });
+      document.body.appendChild($dialog);
     }
   } catch (error) {
     console.log("Reaksiyon eklenirken bir hatta oluştu", error.message);
