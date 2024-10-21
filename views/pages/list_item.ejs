@@ -1,0 +1,13 @@
+<% const { _id: blogId, title, reaction, totalVisits, createdAt, updatedAt } =
+locals.blog %>
+
+<div class="list-item large">
+  <div>
+    <p class="body-large text-on-surface"><%= title %></p>
+    <p class="list-item-text body-medium text-on-surface-variant">
+      <b>Yayınlanma :</b>
+      <%= new Date(createdAt).toLocaleDateString('tr-TR', { day: 'numeric',
+      month: 'short', year: '2-digit' }) %>
+    </p>
+  </div>
+</div>

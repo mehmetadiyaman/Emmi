@@ -24,7 +24,8 @@ const userAuth = require("./src/middlewares/user_auth_middleware");
 const blogDetail = require("./src/routes/blog_detail_route");
 const readingList = require("./src/routes/reading_list_route");
 const blogUpdate = require("./src/routes/blog_update_route");
-
+const profile = require("./src/routes/profile_route");
+const dashboard = require("./src/routes/dashboard_route");
 /**
  * ilk ekspres
  */
@@ -100,6 +101,11 @@ app.use("/", home);
 app.use("/blogs", blogDetail);
 
 /**
+ * Profil sayfası
+ */
+
+app.use("/profile", profile);
+/**
  * kullanıcı yetkilendirmesi
  */
 app.use(userAuth);
@@ -118,6 +124,11 @@ app.use("/readinglist", readingList);
  * Blog güncelleme
  */
 app.use("/blogs", blogUpdate);
+
+/**
+ * Blog güncelleme
+ */
+app.use("/dashboard", dashboard);
 
 /**
  * başlama servisi
