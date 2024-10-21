@@ -5,6 +5,11 @@
 
 "use strict";
 
+/**
+ * özel modüller
+ */
+import dialog from "./dialog.js";
+
 //Okuma kısmı buttonları
 const $readingListBtn = document.querySelector("[data-reading-list-btn]");
 const $readingListNumber = document.querySelector("[data-reading-list-number]");
@@ -25,8 +30,12 @@ const addToReadingList = async () => {
 
     //401 oturum açmamış durumu elle al
     if (response.status == 401) {
-      //giriş için iletişim kutusu göster
-      console.log("giriş yapınız");
+      const $dialog = dialog({
+        title: "Devam etmek için lütfen giriş yapınız",
+        content:
+          "Biz kodlayıcıların paylaşımda bulunduğu,güncel kaldığı ve kariyerlerini geliştirdiği bir yeriz",
+      });
+      document.body.appendChild($dialog);
     }
   } catch (error) {
     console.log("Okuma listesine eklenirken bir hatta oluştu", error.message);

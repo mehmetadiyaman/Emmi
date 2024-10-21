@@ -829,10 +829,10 @@ Snackbar
   justify-content: space-between;
   align-items: center;
   padding-inline: var(--space-4);
-  translate: 0 0;
+  transform: translate(0, 0); /* translate kullanımı düzeltildi */
   border-block-end: 1px solid var(--outline-variant);
   transition: var(--tr-duration-short-2) var(--tr-easing-linear);
-  transition-property: background-color, translate, border-color;
+  transition-property: background-color, transform, border-color; /* translate yerine transform */
   z-index: 4;
 }
 
@@ -877,7 +877,7 @@ Snackbar
   scale: 0.8;
   opacity: 0;
   visibility: hidden;
-  transition: var(--tr-duration-short-2) var(--tr-easing-emphasized-accelerate);
+  transition: var(--tr-duration-short-3) var(--tr-easing-emphasized-accelerate);
   transition-property: scale, opacity;
   will-change: scale, opacity;
 }
@@ -896,7 +896,7 @@ Snackbar
   gap: var(--space-3);
   padding-inline: var(--space-3);
   color: var(--on-surface);
-  --state-laye-bg: var(var(--on-surface));
+  --state-laye-bg: var(--on-surface);
 }
 
 .menu-item .icon {
@@ -909,8 +909,18 @@ Snackbar
 .list-item {
   display: flex;
   gap: var(--space-4);
-  padding: var(var(--space-4));
-  --state-layer-bg: var(var(--on-surface));
+  padding: var(--space-4);
+  --state-layer-bg: var(--on-surface);
+}
+
+.list-item.small {
+  align-items: center;
+  padding-block: var(--space-2);
+}
+
+.list-item .list-item-link {
+  position: absolute;
+  inset: 0;
 }
 
 /*
@@ -944,7 +954,7 @@ Snackbar
 .icon-btn-filled-tonal {
   background-color: var(--surface-container-highest);
   color: var(--on-surface-variant);
-  --state-layer-bg: var(var(--on-surface-variant));
+  --state-layer-bg: var(--on-surface-variant);
 }
 
 .icon-btn-filled-tonal.active {
@@ -1070,7 +1080,7 @@ Snackbar
 .card-meta {
   display: flex;
   align-items: center;
-  gap: var((var(--space-3)));
+  gap: var(--space-3);
   margin-block-end: var(--space-3);
 }
 
@@ -1395,7 +1405,7 @@ body:has(.dialog-root.active) {
 .content-markdown li {
   list-style: initial;
   margin-inline-start: var(--space-6);
-  margin-block: (var(--space-2));
+  margin-block: var(--space-2);
 }
 
 .content-markdown p {

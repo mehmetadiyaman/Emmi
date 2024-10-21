@@ -12,11 +12,11 @@ import imageAsDataURL from "./utils/imageAsDataUrl.js";
 
 // Görüntü alanı, önizleme ve önizlemeyi temizle düğmesi
 const $imageField = document.querySelector("[data-image-field]");
-const $previewElement = document.querySelector("[data-image-preview]"); // Değişken adı değiştirildi
+const $imagePreview = document.querySelector("[data-image-preview]"); // Değişken adı değiştirildi
 const $imagePreviewClear = document.querySelector("[data-image-preview-clear]");
 
 $imageField.addEventListener("change", () => {
-  imagePreview($imageField, $previewElement); // Yeni isimle çağırılıyor
+  imagePreview($imageField, $imagePreview); // Yeni isimle çağırılıyor
 });
 
 /**
@@ -24,8 +24,8 @@ $imageField.addEventListener("change", () => {
  * @function clearImagePreview
  */
 const clearImagePreview = function () {
-  $previewElement.classList.remove("show");
-  $previewElement.innerHTML = "";
+  $imagePreview.classList.remove("show");
+  $imagePreview.innerHTML = "";
 };
 
 $imagePreviewClear.addEventListener("click", clearImagePreview);

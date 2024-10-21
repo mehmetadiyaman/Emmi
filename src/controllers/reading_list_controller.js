@@ -10,6 +10,7 @@
  */
 const User = require("../models/user_model");
 const Blog = require("../models/blog_model");
+const getPagination = require("../utils/get_pagination_util");
 
 /**
  * Bookmark güncellemeleri
@@ -84,7 +85,46 @@ const removeFromReadingList = async (req, res) => {
   }
 };
 
+/**
+ *Okuma lsiteleri güncellemeleri
+ * @async
+ * @function renderReadingList
+ * @param {object} req
+ * @param {object} res
+ * @throws {Error}
+ *
+ */
+
+const renderReadingList = async (req, res) => {
+  try {
+    const { username } = req.session.user;
+    const { readingList } = await User.findOne({ username }).select(
+      "readingList"
+    );
+    const pagination = getPagination(
+      "/readinglist",
+      req.params,
+      20,
+      readingList.length
+    );
+    const readingListBlogs = await Blog.find({ _id: { $in: readingList } })
+      .select("owner createdAt readingTime title reaction totalBookmark")
+      .populate({ path: "owner", select: "name username profilePhoto" })
+      .limit(pagination.limit)
+      .skip(pagination.skip);
+    res.render("./pages/reading_list", {
+      sessionUser: req.session.user,
+      pagination,
+      readingListBlogs,
+    });
+  } catch (error) {
+    console.log("Okuma listesi getirilirken bir hatta oluştu", error.message);
+    throw error;
+  }
+};
+
 module.exports = {
   addToReadingList,
   removeFromReadingList,
+  renderReadingList,
 };

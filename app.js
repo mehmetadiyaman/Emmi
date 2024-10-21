@@ -22,15 +22,13 @@ const createBlog = require("./src/routes/create_blog_route");
 const logout = require("./src/routes/logout_route");
 const userAuth = require("./src/middlewares/user_auth_middleware");
 const blogDetail = require("./src/routes/blog_detail_route");
+const readingList = require("./src/routes/reading_list_route");
+const blogUpdate = require("./src/routes/blog_update_route");
+
 /**
  * ilk ekspres
  */
 const app = express();
-
-
-
-
-
 
 /**
  * görünüm kısmını ayarla
@@ -104,13 +102,22 @@ app.use("/blogs", blogDetail);
 /**
  * kullanıcı yetkilendirmesi
  */
-
 app.use(userAuth);
 
 /**
  * Blog oluşturma sayfası
  */
 app.use("/createblog", createBlog);
+
+/**
+ * Okuma listesi sayfası
+ */
+app.use("/readinglist", readingList);
+
+/**
+ * Blog güncelleme
+ */
+app.use("/blogs", blogUpdate);
 
 /**
  * başlama servisi

@@ -10,7 +10,7 @@
 const router = require("express").Router();
 
 /**
- * node modüller
+ * özel modüller
  */
 const { renderReadingList } = require("../controllers/reading_list_controller");
 
