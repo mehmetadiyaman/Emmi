@@ -756,6 +756,11 @@ span.material-symbols-rounded {
   --state-layer-bg: var(--on-secondary-container);
 }
 
+.btn-text.error {
+  color: var(--error);
+  --state-layer-bg: var(--error);
+}
+
 /**
 Snackbar
 */
@@ -837,7 +842,7 @@ Snackbar
 }
 
 .top-app-bar.hide {
-  translate: 0 -100%;
+  transform: translate(0, -100%);
 }
 .top-app-bar.active {
   background-color: var(--surface-container);
@@ -896,7 +901,7 @@ Snackbar
   gap: var(--space-3);
   padding-inline: var(--space-3);
   color: var(--on-surface);
-  --state-laye-bg: var(--on-surface);
+  --state-layer-bg: var(--on-surface);
 }
 
 .menu-item .icon {
@@ -921,6 +926,42 @@ Snackbar
 .list-item .list-item-link {
   position: absolute;
   inset: 0;
+}
+
+.list-item.large {
+  position: relative;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.list-item.large .list-item-text {
+  opacity: 0.8;
+}
+
+.list-item.large .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-item.large :where(.meta-list, .meta-item, .list-item-actions) {
+  display: flex;
+  align-items: center;
+}
+
+.list-item.large .meta-list {
+  gap: var(--space-3);
+}
+
+.list-item.large .meta-item {
+  gap: var(--space-1);
+  opacity: 0.8;
+}
+
+.list-item.large .list-item-actions {
+  gap: var(--space-2);
+  position: relative;
+  z-index: 1;
 }
 
 /*
@@ -1012,7 +1053,7 @@ Snackbar
   }
 }
 
-.icon-btn.icon-btn[disabled] {
+.icon-btn .icon-btn[disabled] {
   background-color: var(--on-surface-disabled);
   color: var(--on-surface-disabled-text);
   pointer-events: none;
@@ -1054,8 +1095,8 @@ Snackbar
 
 .progress-bar.loading .progress-active-indicator {
   transform: scaleX(0.9);
-  transition: transform 2s var(--tr-easing-emphasized-decelerate)
-    var(--tr-duration-short-2);
+  transition: transform var(--tr-duration-short-2) 2s
+    var(--tr-easing-emphasized-decelerate);
 }
 
 .progress-bar.loading-end .progress-active-indicator {
@@ -1532,7 +1573,55 @@ body:has(.dialog-root.active) {
 .not-found-page .btn-fill {
   margin-block-start: var(--space-1);
 }
-/*kayıt olma sayfası*/
+
+/*GÖSTERGE PANELİ*/
+
+.analytics-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: var(--space-2);
+  margin-block-end: var(--space-5);
+}
+
+.analytics-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  padding: var(--space-6);
+  background-color: var(--surface-container-highest);
+  border-radius: var(--radius-medium);
+}
+
+.analytics-icon-box {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  background-color: var(--tertiary);
+  color: var(--on-tertiary);
+  border-radius: var(--radius-medium);
+}
+
+.analytics-icon-box .material-symbols-rounded {
+  font-variation-settings: "FILL" 1;
+}
+
+.analytics-card .card-title {
+  font-weight: var(--fw-bold);
+}
+
+.post-lists {
+  background-color: var(--surface-container-highest);
+  border-radius: var(--radius-medium);
+  padding-block: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+
+.post-lists .list-item:not(:last-child) {
+  border-block-end: 1px solid var(--outline-variant);
+}
+
+/*KAYIT*/
 @media (min-width: 768px) {
   .text-field-wrapper {
     background-color: var(--surface-container);

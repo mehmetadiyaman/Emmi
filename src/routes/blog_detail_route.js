@@ -23,6 +23,8 @@ const {
   removeFromReadingList,
 } = require("../controllers/reading_list_controller");
 
+const updateVisit = require("../controllers/visit_controller");
+
 // GET route: Blog ayrıntı sayfası
 router.get("/:blogId", renderBlogDetail); // Doğru fonksiyonu kullanmalısınız
 
@@ -37,5 +39,8 @@ router.put("/:blogId/readingList", addToReadingList);
 
 // DELETE route: Blog Okuma listesi silme
 router.delete("/:blogId/readingList", removeFromReadingList);
+
+// PUT route: Blog görünürlüğü güncelleme
+router.put("/:blogId/visit", updateVisit);
 
 module.exports = router;

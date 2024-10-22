@@ -26,6 +26,8 @@ const readingList = require("./src/routes/reading_list_route");
 const blogUpdate = require("./src/routes/blog_update_route");
 const profile = require("./src/routes/profile_route");
 const dashboard = require("./src/routes/dashboard_route");
+const deleteBlog = require("./src/routes/blog_delete_route");
+const settings = require("./src/routes/settings_route");
 /**
  * ilk ekspres
  */
@@ -121,14 +123,19 @@ app.use("/createblog", createBlog);
 app.use("/readinglist", readingList);
 
 /**
- * Blog güncelleme
+ * Blog güncelleme ve silme
  */
-app.use("/blogs", blogUpdate);
+app.use("/blogs", blogUpdate, deleteBlog);
 
 /**
  * Blog güncelleme
  */
 app.use("/dashboard", dashboard);
+
+/**
+ * Blog güncelleme
+ */
+app.use("/settings", settings);
 
 /**
  * başlama servisi
