@@ -1,33 +1,32 @@
-/**
- * @license MIT
- * @copyright 2024 EMMİ
- */
-
 "use strict";
 
 const $snackbarWrapper = document.querySelector("[data-snackbar-wrapper]");
 let lastTimeout = null;
 
 /**
- * snacbar özelliklerini ve bileşenlerini oluştuma
+ * Snackbar özelliklerini ve bileşenlerini oluşturma
  * @param {Object} props
  * @param {string} props.message
  * @param {string} [props.type]
  */
 const Snackbar = (props) => {
-  //snackbar elementlerini oluşturma
+  // Snackbar elementlerini oluşturma
   const $snackbar = document.createElement("div");
   $snackbar.classList.add("snackbar");
   props.type && $snackbar.classList.add(props.type);
-  $snackbar.innerHTML = `<p class="body-medium snackbar-text">${props.message}</p>
-`;
-  //öncekini temizle ve yenisini ekle
+  $snackbar.innerHTML = `<p class="body-medium snackbar-text">${props.message}</p>`;
+
+  // Öncekini temizle ve yenisini ekle
   $snackbarWrapper.innerHTML = "";
   $snackbarWrapper.append($snackbar);
-  //snackbar 10 sn sonra sil
+
+  // Snackbar 3 saniye sonra çıkış animasyonuna başla ve sonra sil
   clearTimeout(lastTimeout);
   lastTimeout = setTimeout(() => {
-    $snackbarWrapper.removeChild($snackbar);
+    $snackbar.style.animation = "slide-out 0.3s ease-in forwards";
+    setTimeout(() => {
+      $snackbarWrapper.removeChild($snackbar);
+    }, 300); // Çıkış animasyonunun süresiyle uyumlu
   }, 3000);
 };
 

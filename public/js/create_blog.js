@@ -79,7 +79,7 @@ const handlePublishBlog = async function (event) {
   });
   //Yanıtın başarılı olduğu durumu ele al
   if (response.ok) {
-    Snackbar({ message: "Blogunuz oluşturuldu" });
+    Snackbar({ message: "Blogunuz oluşturuldu", type: "success" });
     $progressBar.classList.add("loading-end");
     return (window.location = response.url);
   }

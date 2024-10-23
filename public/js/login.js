@@ -1,8 +1,3 @@
-/**
- * @license MIT
- * @copyright 2024 EMMİ
- */
-
 "use strict";
 
 /**
@@ -20,10 +15,9 @@ $form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   //birden fazla gönderim için button devre dışı bırakma
-
   $submitBtn.setAttribute("disabled", "");
 
-  //form verilerini yakalamak için formdata nesnesi oluşturm
+  //form verilerini yakalamak için formdata nesnesi oluşturma
   const formData = new FormData($form);
 
   //sunucuya hesap oluşturma isteği gönder
@@ -38,12 +32,22 @@ $form.addEventListener("submit", async (event) => {
   });
 
   if (response.ok) {
-    return (window.location = response.url);
+    // Başarılı giriş Snackbar mesajını göster
+    Snackbar({
+      type: "success", // Başarı durumu için yeşil tarzı
+      message: "Giriş başarılı! Yönlendiriliyor...",
+    });
+
+    // 1 saniye bekle, ardından yönlendirme yap
+    setTimeout(() => {
+      window.location = response.url;
+    }, 1000); // 1 saniye gecikme ile yönlendirme
+    return;
   }
 
   //Yanıt durumu 400 olanları elle al
   if (response.status == 400) {
-    //gönder düğmesini etkinleştir ve hatta mesajını göster
+    //gönder düğmesini etkinleştir ve hata mesajını göster
     $submitBtn.removeAttribute("disabled");
     const { message } = await response.json();
     Snackbar({

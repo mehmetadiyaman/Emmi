@@ -83,7 +83,7 @@ const handleBlogUpdate = async (event) => {
   //Başarılı olduğu durumu ele al
   if (response.ok) {
     $submitBtn.removeAttribute("disabled");
-    Snackbar({ message: "Blogunuz güncellendi" });
+    Snackbar({ message: "Blogunuz güncellendi", type: "success" });
     $progressBar.classList.add("loading-end");
     window.location = window.location.href.replace("/edit", "");
     return;

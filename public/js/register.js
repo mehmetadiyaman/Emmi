@@ -48,7 +48,18 @@ $form.addEventListener("submit", async (event) => {
   });
 
   if (response.ok) {
-    return (window.location = response.url);
+    // Başarılı giriş Snackbar mesajını göster
+    Snackbar({
+      type: "success", // Başarı durumu için yeşil tarzı
+      message:
+        "Emmi'ye Hoşgeldin , içeride inovasyonun tadını çıkartın! Yönlendiriliyor...",
+    });
+
+    // 1 saniye bekle, ardından yönlendirme yap
+    setTimeout(() => {
+      window.location = response.url;
+    }, 1000); // 1 saniye gecikme ile yönlendirme
+    return;
   }
 
   //Yanıt durumu 400 olanları elle al

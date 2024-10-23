@@ -1,7 +1,10 @@
 <% const { _id: blogId, banner: { url: bannerURL } = {}, title, owner: { name,
-username }, createdAt, readingTime, reaction, totalBookmark } = locals.blog;
-const compressedBannerURL = bannerURL?.replace('upload/',
-'upload/w_360,h_155,c_auto/q_auto/f_auto/'); %>
+username, profilePhoto: { url: profilePhoto } = {} }, createdAt, readingTime,
+reaction, totalBookmark } = locals.blog; %> <% const compressedBannerURL =
+bannerURL?.replace('upload/', 'upload/w_360,h_155,c_auto/q_auto/f_auto/'); %> <%
+const compressedProfileURL = profilePhoto?.replace('upload/',
+'upload/w_40,h_40,c_auto/f_auto/'); %>
+
 <div class="card">
   <% if (compressedBannerURL) { %>
   <figure class="card-banner img-holder">
@@ -17,7 +20,17 @@ const compressedBannerURL = bannerURL?.replace('upload/',
   <div class="card-content">
     <div class="card-meta">
       <div class="avatar">
+        <% if (compressedProfileURL) {%>
+        <img
+          src="<%=compressedProfileURL%>"
+          width="32"
+          height="32"
+          alt="<%=name%>"
+          class="img-cover"
+        />
+        <% }else { %>
         <p class="title-medium"><%= name[0] %></p>
+        <% } %>
       </div>
 
       <div>

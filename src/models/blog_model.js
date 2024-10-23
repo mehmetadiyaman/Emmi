@@ -18,24 +18,24 @@ const blogSchema = new mongoose.Schema(
     banner: {
       url: {
         type: String,
-        require: true,
+        required: true,
       },
       public_id: {
         type: String,
-        require: true,
+        required: true,
       },
     },
     title: {
       type: String,
-      require: true,
+      required: true,
     },
     content: {
       type: String,
-      require: true,
+      required: true,
     },
     owner: {
       type: mongoose.SchemaTypes.ObjectId,
-      require: true,
+      required: true,
       ref: "User",
     },
     reaction: {
@@ -57,4 +57,5 @@ const blogSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
 module.exports = mongoose.model("Blog", blogSchema);

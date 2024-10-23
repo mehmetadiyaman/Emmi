@@ -28,6 +28,7 @@ const handleBlogDelete = async (blogId) => {
   if (response.ok) {
     Snackbar({
       message: "Blog silindi",
+      type: "success",
     });
     window.location.reload();
   }

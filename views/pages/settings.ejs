@@ -1,11 +1,14 @@
 <% const{ profilePhoto:{ url:profilePhotoURL }={}, name, username, email, bio
-}=locals.currentUser; %>
+}=locals.currentUser; const compressedProfilePhotoURL =
+profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
+%>
 
 <!DOCTYPE html>
 <html lang="tr">
   <head>
     <%- include('../layouts/head',{ title: 'Ayarlar | Emmi'}) %>,
     <script src="/js/script.js" defer></script>
+    <script type="module" src="/js/settings.js"></script>
   </head>
   <body>
     <!--
@@ -49,7 +52,7 @@
                       name="profilePhoto"
                       id="profilePhoto"
                       accept="image/png,image/jpeg,image/jpg"
-                      data-image-filed
+                      data-image-field
                     />
                     <span class="material-symbols-rounded leading-icon">
                       cloud_upload
@@ -57,7 +60,18 @@
                     fotoğraf yükle
                   </label>
 
+                  <% if (compressedProfilePhotoURL) { %>
+                  <div class="image-preview show" data-image-preview>
+                    <img
+                      src="<%=compressedProfilePhotoURL%>"
+                      width="200"
+                      height="200"
+                      alt="<%= name %>"
+                    />
+                  </div>
+                  <% }else{%>
                   <div class="image-preview" data-image-preview></div>
+                  <% }%>
                   <button
                     type="button"
                     class="icon-btn filled-tonal"
@@ -151,15 +165,59 @@
                   >
                   <input
                     type="password"
-                    name="old-password"
-                    id="old_password"
+                    name="old_password"
+                    id="old-password"
                     autocomplete="current-password"
                     placeholder=""
                     required
                     class="body-large text-field"
                   />
                 </div>
+
+                <div class="text-field-wrapper">
+                  <label for="new-password" class="label body-large"
+                    >Yeni şifre</label
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    id="new-password"
+                    autocomplete="new-password"
+                    placeholder=""
+                    required
+                    minlength="8"
+                    class="body-large text-field"
+                  />
+                </div>
+
+                <div class="text-field-wrapper">
+                  <label for="confirm-password" class="label body-large"
+                    >Yeni şifre tekrar</label
+                  >
+                  <input
+                    type="password"
+                    name="confirm_password"
+                    id="confirm-password"
+                    autocomplete="confirm-password"
+                    placeholder=""
+                    required
+                    class="body-large text-field"
+                  />
+                </div>
               </form>
+            </div>
+
+            <div class="settings-card">
+              <h3 class="headline-small text-error">Hesap silme</h3>
+
+              <p class="body-large text-on-surface-variant card-text">
+                EMMİ'deki hesabınızı silmeniz,kişisel verilerinizin kalıcı
+                olarak silinmesine neden olacaktır.Bu işlem geri alınamaz
+              </p>
+              <button class="btn btn-fill error" data-account-delete>
+                <p class="label-large">Hesabımı sil</p>
+                <div class="state-layer"></div>
+              </button>
             </div>
           </div>
         </div>

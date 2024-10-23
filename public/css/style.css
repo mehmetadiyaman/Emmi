@@ -501,6 +501,10 @@ button {
   text-decoration: underline;
 }
 
+.text-error {
+  color: var(--error);
+}
+
 /*#RAUSED STYLE
 -----------------------------
 */
@@ -761,46 +765,80 @@ span.material-symbols-rounded {
   --state-layer-bg: var(--error);
 }
 
+.btn-fill.error {
+  background-color: var(--error);
+  color: var(--on-error);
+  --state-layer-bg: var(--on-error);
+}
+
 /**
 Snackbar
 */
 
-.snackbar-wrapper {
+/* Snackbar kaplama */
+[data-snackbar-wrapper] {
   position: fixed;
-  left: var(--space-4);
-  right: var(--space-4);
-  bottom: var(--space-4);
-  z-index: 4;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
 }
 
+/* Snackbar genel stili */
 .snackbar {
-  background-color: var(--inverse-surface);
-  color: var(--inverse-on-surface);
-  min-height: 48px;
-  max-height: max-content;
-  max-width: 60ch;
-  width: 100%;
   display: flex;
   align-items: center;
-  border-radius: var(--radius-extra-small);
-  box-shadow: var(--shadow-3);
-  padding: var(--space-3) var(--space-4);
-  animation: snackbar-show var(--tr-duration-medium-4)
-    var(--tr-easing-standard-decelerate);
+  justify-content: center;
+  padding: 16px 24px;
+  background-color: #323232;
+  color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(100%);
+  animation: slide-in 0.3s ease-out forwards;
 }
 
-@keyframes snackbar-show {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
+/* Snackbar metin */
+.snackbar-text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
+/* Farklı türler için stiller */
+.snackbar.success {
+  background-color: #4caf50;
+}
 .snackbar.error {
-  background-color: var(--error);
-  color: var(--on-error);
+  background-color: #f44336;
+}
+.snackbar.warning {
+  background-color: #ff9800;
+}
+
+/* Giriş animasyonu */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Çıkış animasyonu */
+@keyframes slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
 }
 
 /*
@@ -1619,6 +1657,73 @@ body:has(.dialog-root.active) {
 
 .post-lists .list-item:not(:last-child) {
   border-block-end: 1px solid var(--outline-variant);
+}
+
+/*AYARLAR*/
+
+.settings-wrapper {
+  margin-block-start: var(--space-4);
+}
+
+.settings-card {
+  padding: var(--space-4);
+  background-color: var(--surface-container-highest);
+  border-radius: var(--radius-large);
+}
+
+.settings-card:not(:last-child) {
+  margin-block-end: var(--space-2);
+}
+
+.settings-wrapper .title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-4);
+  margin-block-end: var(--space-4);
+}
+
+.avatar-image-field {
+  width: 160px;
+  height: 160px;
+  border-radius: var(--radius-full);
+  margin-block-start: var(--space-3);
+  border-color: var(--outline);
+  overflow: visible;
+}
+
+.avatar-image-field .label {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: var(--space-2);
+  pointer-events: initial;
+  cursor: pointer;
+  width: 100%; /* Label'in genişliğini tam genişlik yapıyoruz */
+  height: 100%; /* Yüksekliği de tam genişlik yaparak ortalama sağlıyoruz */
+}
+
+.avatar-image-field:has(.image-preview.show).label {
+  display: none;
+}
+
+.avatar-image-field .image-preview {
+  border-radius: var(--radius-full);
+  aspect-ratio: 1 / 1;
+}
+
+.avatar-image-field .icon-btn {
+  top: 0;
+  right: 0;
+}
+
+.settings-form .text-field-wrapper {
+  margin-block-start: var(--space-5);
+  background-color: var(--surface-container-highest);
+}
+
+.settings-card .card-text {
+  margin-block: var(--space-3) var(--space-4);
 }
 
 /*KAYIT*/
