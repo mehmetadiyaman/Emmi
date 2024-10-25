@@ -1321,8 +1321,21 @@ body:has(.dialog-root.active) {
   height: 48px; /* Yükseklik artırıldı */
 }
 
-/*Footer
+/*ANA SAYFA
 */
+
+.home-page .blog-list {
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  align-items: stretch;
+}
+
+.home-page .card:not(:first-child) .card-banner {
+  display: none;
+}
+
+/*FOOTER
+*/
+
 .footer {
   height: var(--footer-height);
   padding-block: var(--space-5);
@@ -1727,9 +1740,62 @@ body:has(.dialog-root.active) {
 }
 
 /*KAYIT*/
+
+@media (min-widht: 600px) {
+  /*ANA SAYFA*/
+  .home-page .card:not(:first-child) .card-banner {
+    display: block;
+  }
+}
+
 @media (min-width: 768px) {
+  /*
+  *Raused
+  */
+  .page {
+    padding-block: var(--space-6);
+  }
+
+  .page-title {
+    font-size: var(--fs-headline-medium);
+    line-height: var(--lh-headline-medium);
+    margin-block-end: var(--space-6);
+  }
+
+  .blog-list {
+    gap: var(--space-3);
+  }
+
+  .container {
+    max-width: 992px;
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--space-6);
+  }
+
+  /*
+  *Üst çubuk
+  */
+
+  .top-app-bar {
+    padding-inline: var(--space-6);
+  }
+
   .text-field-wrapper {
     background-color: var(--surface-container);
+  }
+
+  .pagination {
+    gap: var(--space-6);
+    margin-block-start: var(--space-6);
+  }
+
+  .card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .form-card {
@@ -1744,5 +1810,111 @@ body:has(.dialog-root.active) {
 
   .form-card .form {
     margin-block: var(--space-6);
+  }
+
+  /*
+  *Blog oluşturma kısmı
+  */
+  .blog-write-form {
+    gap: var(--space-6);
+    padding: var(--space-6);
+  }
+
+  .create-blog-page .title-field {
+    font-size: var(--fs-display-medium);
+    line-height: var(--lh-display-medium);
+  }
+
+  /*
+  *Blog detay kısmı
+  */
+
+  .blog-detail-page .container {
+    padding-inline: var(--space-4);
+  }
+
+  .blog-banner {
+    border-radius: var(--radius-large);
+  }
+
+  .blog-content,
+  .more-blog {
+    padding-inline: unset;
+  }
+
+  .blog-content .title {
+    font-size: var(--fs-display-medium);
+    line-height: var(--lh-display-medium);
+  }
+
+  /*
+  *Profil kısmı
+  */
+
+  .profile-card {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .profile-content {
+    width: 100%;
+    position: relative;
+    padding-inline-end: 180px;
+  }
+
+  .profile-content .title {
+    font-size: var(--fs-headline-large);
+    line-height: var(--lh-headline-large);
+  }
+
+  .profile-content .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  /*
+  *Blog detay sayfası
+  */
+  .blog-actions {
+    bottom: var(--space-6);
+  }
+
+  /*
+  *Profil sayfası
+  */
+
+  .profile-page .divider {
+    margin-block: var(--space-6);
+  }
+
+  /*
+  *Gösterge paneli sayfası
+  */
+
+  .post-lists .list-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /*
+  *Ayarlar sayfası
+  */
+
+  .settings-card:not(:last-child) {
+    margin-block-end: var(--space-4);
+  }
+
+  .settings-card {
+    padding: var(--space-6);
+  }
+
+  .settings-form .wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-5);
   }
 }

@@ -17,6 +17,7 @@ const {
   renderSettings,
   updateBasicInfo,
   updatePassword,
+  deleteAccount,
 } = require("../controllers/settings_controller");
 
 //GET route:Ayarlar sayfasını getirir
@@ -25,5 +26,6 @@ router.get("/", renderSettings);
 router.put("/basic_info", updateBasicInfo);
 //PUT route:Kullanıcı şifre güncelle
 router.put("/password", updatePassword);
-
+//DELET route:hesap silme
+router.delete("/account", deleteAccount);
 module.exports = router;

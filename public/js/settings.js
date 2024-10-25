@@ -168,3 +168,25 @@ const updatePassword = async (event) => {
   }
 };
 $passwordForm.addEventListener("submit", updatePassword);
+
+/**
+ * Hesabı silme
+ */
+const $accountDeleteBtn = document.querySelector("[data-account-delete]");
+const deleteAccount = async () => {
+  const confirmDelete = confirm("Hesabınızı silmek istediğinize emin misiniz?");
+  if (!confirmDelete) {
+    return;
+  }
+  $accountDeleteBtn.setAttribute("disabled", "");
+  $progressBar.classList.add("loading");
+  const response = await fetch(`${window.location.href}/account`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    $progressBar.classList.add("loading");
+    window.location = `${window.location.origin}/`;
+  }
+};
+
+$accountDeleteBtn.addEventListener("click", deleteAccount);

@@ -6,9 +6,15 @@
 "use strict";
 
 /**
+ * node modüller
+ */
+const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
+/**
  * özel modüller
  */
 const User = require("../models/user_model");
+const Blog = require("../models/blog_model");
 const uploadToCloudinary = require("../config/cloudinary_config");
 
 /**
@@ -113,6 +119,22 @@ const updatePassword = async (req, res) => {
       username: sessionUsername,
     }).select("password");
     const { old_password, password } = req.body;
+
+    //Eski şifreyi doğrula
+    const oldPasswordIsValid = await bcrypt.compare(
+      old_password,
+      currentUser.password
+    );
+
+    //Eski şifre doğru değil ise
+    if (!oldPasswordIsValid) {
+      return res.status(400).json({ message: "Lütfen doğru şifrenizi girin." });
+    }
+    //yeni şifre hashleme
+    const newPassword = await bcrypt.hash(password, 10);
+    currentUser.password = newPassword;
+    await currentUser.save();
+    res.sendStatus(200);
   } catch (error) {
     console.error(
       "Şifre güncelleme  işlemi sırasında bir hatta oluştu",
@@ -122,8 +144,32 @@ const updatePassword = async (req, res) => {
   }
 };
 
+/**
+ * @async
+ * @param {Object} req
+ * @param {Object} res
+ * @throws {Error}
+ */
+
+const deleteAccount = async (req, res) => {
+  try {
+    const { username } = req.session.user;
+    const currentUser = await User.findOne({ username }).select("blogs");
+    await Blog.deleteMany({ _id: { $in: currentUser.blogs } });
+    await User.deleteOne({ username });
+    const Session = mongoose.connection.db.collection("sessions");
+    await Session.deleteMany({ session: { $regex: username, $options: "i" } });
+    req.session.destroy();
+    res.sendStatus(200);
+  } catch (error) {
+    console.log("Hesap silinirken bir hatta oluştu", error.message);
+    throw error;
+  }
+};
+
 module.exports = {
   renderSettings,
   updateBasicInfo,
   updatePassword,
+  deleteAccount,
 };
