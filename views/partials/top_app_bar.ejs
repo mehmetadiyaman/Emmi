@@ -80,48 +80,46 @@
             </p>
             <p class="body-large text-on-surface"><%= name %></p>
           </div>
-          <div class="state-layer">
-            <a
-              href="/profile/<%= username %>"
-              title="<%= name %>"
-              class="list-item-link"
-            ></a>
-          </div>
+          <div class="state-layer"></div>
+          <a
+            href="/profile/<%= username %>"
+            title="<%= name %>"
+            class="list-item-link"
+          ></a>
         </div>
-        <div class="divider">
-          <a href="/dashboard" class="menu-item">
+        <div class="divider"></div>
+        <a href="/dashboard" class="menu-item">
+          <span class="icon material-symbols-rounded" aria-hidden="true"
+            >dashboard</span
+          >
+          <p class="label-large">Gösterge paneli</p>
+          <div class="state-layer"></div>
+        </a>
+        <a href="/readinglist" class="menu-item">
+          <span class="icon material-symbols-rounded" aria-hidden="true"
+            >bookmark</span
+          >
+          <p class="label-large">Okuma listesi</p>
+          <div class="state-layer"></div>
+        </a>
+        <a href="/settings" class="menu-item">
+          <span class="icon material-symbols-rounded" aria-hidden="true"
+            >settings</span
+          >
+          <p class="label-large">Ayarlar</p>
+          <div class="state-layer"></div>
+        </a>
+        <div class="divider"></div>
+
+        <form action="/logout" method="post">
+          <button type="submit" class="menu-item">
             <span class="icon material-symbols-rounded" aria-hidden="true"
-              >dashboard</span
+              >logout</span
             >
-            <p class="label-large">Gösterge paneli</p>
+            <p class="label-large">Çıkış yap</p>
             <div class="state-layer"></div>
-          </a>
-          <a href="/readinglist" class="menu-item">
-            <span class="icon material-symbols-rounded" aria-hidden="true"
-              >bookmark</span
-            >
-            <p class="label-large">Okuma listesi</p>
-            <div class="state-layer"></div>
-          </a>
-          <a href="/settings" class="menu-item">
-            <span class="icon material-symbols-rounded" aria-hidden="true"
-              >settings</span
-            >
-            <p class="label-large">Ayarlar</p>
-            <div class="state-layer"></div>
-          </a>
-          <div class="divider">
-            <form action="/logout" method="post">
-              <button type="submit" class="menu-item">
-                <span class="icon material-symbols-rounded" aria-hidden="true"
-                  >logout</span
-                >
-                <p class="label-large">Çıkış yap</p>
-                <div class="state-layer"></div>
-              </button>
-            </form>
-          </div>
-        </div>
+          </button>
+        </form>
       </div>
     </div>
     <% } else { %>

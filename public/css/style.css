@@ -872,10 +872,10 @@ Snackbar
   justify-content: space-between;
   align-items: center;
   padding-inline: var(--space-4);
-  transform: translate(0, 0); /* translate kullanımı düzeltildi */
+  translate: 0 0; /* translate kullanımı düzeltildi */
   border-block-end: 1px solid var(--outline-variant);
   transition: var(--tr-duration-short-2) var(--tr-easing-linear);
-  transition-property: background-color, transform, border-color; /* translate yerine transform */
+  transition-property: background-color, translate, border-color; /* translate yerine transform */
   z-index: 4;
 }
 
