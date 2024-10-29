@@ -1796,6 +1796,7 @@ body:has(.dialog-root.active) {
     -webkit-line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis;
+    line-clamp: 3; /* Standart versiyon, desteklenmese de uyarıyı gidermeye yardımcı olabilir */
   }
 
   .form-card {
