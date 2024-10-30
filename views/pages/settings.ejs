@@ -1,28 +1,22 @@
-<% const{ profilePhoto:{ url:profilePhotoURL }={}, name, username, email, bio
-}=locals.currentUser; const compressedProfilePhotoURL =
+<% const { profilePhoto: { url: profilePhotoURL } = {}, name, username, email,
+bio } = locals.currentUser; %> <% const compressedProfilePhotoURL =
 profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
 %>
 
 <!DOCTYPE html>
 <html lang="tr">
   <head>
-    <%- include('../layouts/head',{ title: 'Ayarlar | Emmi'}) %>,
+    <%- include('../layouts/head', { title: 'Ayarlar | Emmi' }) %>
     <script src="/js/script.js" defer></script>
     <script type="module" src="/js/settings.js"></script>
   </head>
   <body>
-    <!--
-    #Üst uygulama çubuğu
-    -->
-    <%- include("../partials/top_app_bar")%>
+    <%- include("../partials/top_app_bar") %>
 
     <main class="main">
-      <!--
-    #Home 
-    -->
       <article class="page settings-page">
         <div class="container">
-          <h2 class="headline-small page-titlr text-on-surface">Ayarlar</h2>
+          <h2 class="headline-small page-title text-on-surface">Ayarlar</h2>
           <div class="settings-wrapper">
             <div class="settings-card">
               <form class="settings-form" data-basic-info-form>
@@ -54,24 +48,24 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                       accept="image/png,image/jpeg,image/jpg"
                       data-image-field
                     />
-                    <span class="material-symbols-rounded leading-icon">
-                      cloud_upload
-                    </span>
+                    <span class="material-symbols-rounded leading-icon"
+                      >cloud_upload</span
+                    >
                     fotoğraf yükle
                   </label>
 
                   <% if (compressedProfilePhotoURL) { %>
                   <div class="image-preview show" data-image-preview>
                     <img
-                      src="<%=compressedProfilePhotoURL%>"
+                      src="<%= compressedProfilePhotoURL %>"
                       width="200"
                       height="200"
                       alt="<%= name %>"
                     />
                   </div>
-                  <% }else{%>
+                  <% } else { %>
                   <div class="image-preview" data-image-preview></div>
-                  <% }%>
+                  <% } %>
                   <button
                     type="button"
                     class="icon-btn filled-tonal"
@@ -91,9 +85,10 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                       id="name"
                       autocomplete="name"
                       placeholder=""
-                      value="<%=name%>"
+                      value="<%= name %>"
                       required
                       class="body-large text-field"
+                      aria-label="Tam isim"
                     />
                   </div>
 
@@ -107,9 +102,10 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                       id="username"
                       autocomplete="username"
                       placeholder=""
-                      value="<%=username%>"
+                      value="<%= username %>"
                       required
                       class="body-large text-field"
+                      aria-label="Kullanıcı adı"
                     />
                   </div>
                 </div>
@@ -124,9 +120,10 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                     id="email"
                     autocomplete="email"
                     placeholder=""
-                    value="<%=email%>"
+                    value="<%= email %>"
                     required
                     class="body-large text-field"
+                    aria-label="E-posta adresi"
                   />
                 </div>
 
@@ -137,9 +134,10 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                     name="bio"
                     id="bio"
                     placeholder=""
-                    value="<%=bio%>"
+                    value="<%= bio %>"
                     maxlength="240"
                     class="body-large text-field"
+                    aria-label="Biyografi"
                   />
                 </div>
               </form>
@@ -171,6 +169,7 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                     placeholder=""
                     required
                     class="body-large text-field"
+                    aria-label="Eski şifre"
                   />
                 </div>
 
@@ -187,6 +186,7 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                     required
                     minlength="8"
                     class="body-large text-field"
+                    aria-label="Yeni şifre"
                   />
                 </div>
 
@@ -202,6 +202,7 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                     placeholder=""
                     required
                     class="body-large text-field"
+                    aria-label="Yeni şifre tekrar"
                   />
                 </div>
               </form>
@@ -209,10 +210,9 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
 
             <div class="settings-card">
               <h3 class="headline-small text-error">Hesap silme</h3>
-
               <p class="body-large text-on-surface-variant card-text">
-                EMMİ'deki hesabınızı silmeniz,kişisel verilerinizin kalıcı
-                olarak silinmesine neden olacaktır.Bu işlem geri alınamaz
+                EMMİ'deki hesabınızı silmeniz, kişisel verilerinizin kalıcı
+                olarak silinmesine neden olacaktır. Bu işlem geri alınamaz.
               </p>
               <button class="btn btn-fill error" data-account-delete>
                 <p class="label-large">Hesabımı sil</p>
@@ -223,10 +223,8 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
         </div>
       </article>
     </main>
-    <!--
-    #Footer
-    -->
-    <%- include("../layouts/footer")%>
+
+    <%- include("../layouts/footer") %>
     <div class="snackbar-wrapper" data-snackbar-wrapper></div>
   </body>
 </html>

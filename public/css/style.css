@@ -698,74 +698,120 @@ span.material-symbols-rounded {
 .text-field-wrapper.error:hover .text-field {
   caret-color: var(--on-error-container);
 }
-
-/**
-*ortak button
-*/
-
 .btn {
-  height: 40px;
-  width: max-content; /* max-width yerine width kullanıldı */
+  height: 48px;
+  width: max-content;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--space-2);
-  border-radius: var(--radius-full);
-  padding-inline: var(--space-06);
+  gap: 8px;
+  border-radius: 24px; /* Yuvarlak köşeler */
+  padding: 0 16px;
   cursor: pointer;
-  transition: box-shadow var(--tr-duration-short-2) var(--tr-easing-standard); /* box-shadow yazım hatası düzeltildi */
+  transition: background 0.3s ease, color 0.3s ease; /* Renk geçişi için */
+  border: none; /* Kenarlığı kaldırdık, daha temiz bir görünüm */
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  position: relative; /* Animasyonlar için pozisyon ayarı */
+  overflow: hidden; /* İçeriğin taşmasını önler */
 }
 
 .btn-fill {
-  background-color: var(--primary);
-  color: var(--on-primary);
-  --state-layer-bg: var(--on-primary);
+  background: linear-gradient(
+    45deg,
+    var(--primary),
+    var(--tertiary)
+  ); /* Light tema için ana ve üçüncül renk */
+  color: var(--on-primary); /* Yazı rengi */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, color 0.3s ease; /* Arka plan ve yazı rengi geçişi */
 }
 
 .btn-fill:hover:not(:focus, [disabled]) {
-  box-shadow: var(--shadow-1);
-}
-
-:is(.btn-fill, .btn.filled-tonal)[disabled] {
-  background-color: var(--on-surface-disabled);
-  color: var(--on-surface-disabled-text);
-  pointer-events: none;
-  user-select: none;
-}
-
-.btn-text {
-  padding-inline: var(--space-3);
-  color: var(--primary);
-  --state-layer-bg: var(--primary);
-}
-
-.btn :where(.leading-icon, .trailing-icon) {
-  font-size: 18px;
-}
-
-.btn:has(> .leading-icon) {
-  padding-inline-start: var(--space-4);
-}
-
-.btn:has(> .trailing-icon) {
-  padding-inline-end: var(--space-4);
+  background: linear-gradient(
+    45deg,
+    var(--tertiary),
+    var(--primary)
+  ); /* Hoverda ters geçiş */
+  color: var(--on-tertiary); /* Hoverda yazı rengi değişimi */
 }
 
 .btn.filled-tonal {
-  background-color: var(--secondary-container);
-  color: var(--on-secondary-container);
-  --state-layer-bg: var(--on-secondary-container);
+  background: linear-gradient(
+    45deg,
+    var(--surface),
+    var(--surface-variant)
+  ); /* Tonal arka plan */
+  color: var(--on-surface); /* Yazı rengi */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease; /* Geçiş efekti */
+}
+
+.btn.filled-tonal:hover {
+  background: linear-gradient(
+    45deg,
+    var(--surface-variant),
+    var(--surface)
+  ); /* Hoverda ters geçiş */
+  color: var(--on-surface-variant); /* Hoverda yazı rengi değişimi */
+}
+
+.btn.filled-tonal:focus {
+  outline: none; /* Tarayıcı varsayılan kenarlığını kaldır */
+  box-shadow: 0 0 0 4px rgba(30, 136, 229, 0.5); /* Odak durumunda parlak bir gölge */
+}
+
+.btn.filled-tonal:active {
+  transform: translateY(0); /* Tıklama sırasında butonu aşağıya kaydırma */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Buton üzerinde yüzerken bir efekt ekleme */
+.btn:hover:before,
+.btn:focus:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%; /* Efekt boyutu */
+  height: 300%; /* Efekt boyutu */
+  background: rgba(255, 255, 255, 0.3); /* Beyaz yarı saydam efekt */
+  border-radius: 50%; /* Yuvarlak */
+  transform: translate(-50%, -50%) scale(0); /* Efekt başlangıç durumu */
+  transition: transform 0.5s ease; /* Efekt geçişi */
+  z-index: 0; /* Efektin butondan arka planda olması */
+}
+
+.btn:hover:before,
+.btn:focus:before {
+  transform: translate(-50%, -50%) scale(1); /* Efekt büyüme durumu */
+  z-index: -1; /* Efekt butonun arkasına yerleşsin */
+}
+
+.btn-text {
+  padding: 0 8px;
+  color: var(--primary); /* Mavi yazı rengi */
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.3s ease; /* Metin rengi geçişi için */
+}
+
+.btn-text:hover {
+  color: var(--tertiary); /* Metin hover durumunda renk değişimi */
 }
 
 .btn-text.error {
-  color: var(--error);
-  --state-layer-bg: var(--error);
+  color: var(--error); /* Hata durumu için kırmızı yazı rengi */
+  text-decoration: underline;
+  font-weight: 600;
 }
 
 .btn-fill.error {
-  background-color: var(--error);
-  color: var(--on-error);
-  --state-layer-bg: var(--on-error);
+  background-color: var(--error); /* Hata durumu için kırmızı arka plan */
+  color: var(--on-error); /* Beyaz yazı rengi */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
 }
 
 /**
@@ -1667,6 +1713,10 @@ body:has(.dialog-root.active) {
   border-radius: var(--radius-medium);
   padding-block: var(--space-3);
   margin-block-start: var(--space-4);
+}
+
+.bold {
+  font-weight: var(--fw-bold);
 }
 
 .post-lists .list-item:not(:last-child) {
