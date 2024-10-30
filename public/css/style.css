@@ -1792,11 +1792,12 @@ body:has(.dialog-root.active) {
   }
 
   .card-title {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    display: -webkit-box; /* Flexbox kutusu */
+    -webkit-box-orient: vertical; /* Yatay veya dikey yönlendirme */
+    -webkit-line-clamp: 3; /* Üç satırda sınırlama */
+    overflow: hidden; /* Taşan içeriği gizleme */
+    text-overflow: ellipsis; /* Taşan içeriği "..." ile gösterme */
+    line-clamp: 3; /* Standart CSS özelliği (şu an için tarayıcı desteği yok) */
   }
 
   .form-card {
