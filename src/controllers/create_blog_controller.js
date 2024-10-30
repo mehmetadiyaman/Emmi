@@ -6,23 +6,23 @@
 "use strict";
 
 /**
- * node modüller
+ * Node modüller
  */
 const crypto = require("crypto");
 
 /**
- * özel modüller
+ * Özel modüller
  */
 const uploadToCloudinary = require("../config/cloudinary_config");
 const Blog = require("../models/blog_model");
 const User = require("../models/user_model");
 const getReadingTime = require("../utils/get_reading_time_utils");
+
 /**
  * Blog oluşturma sayfasını getir
  * @param {object} req
  * @param {object} res
  */
-
 const renderCreateBlog = (req, res) => {
   res.render("./pages/create_blog", {
     sessionUser: req.session.user,
@@ -39,11 +39,12 @@ const postCreateBlog = async (req, res) => {
     const public_id = crypto.randomBytes(10).toString("hex");
     const bannerURL = await uploadToCloudinary(banner, public_id);
 
-    //Blog yazsı oluşturan kullanıcıyı bu
+    // Blog yazısını oluşturan kullanıcıyı bul
     const user = await User.findOne({
       username: req.session.user.username,
     }).select("_id blogs blogPublished");
-    //Yeni blog post oluşturma
+
+    // Yeni blog post oluşturma
     const newBlog = await Blog.create({
       banner: {
         url: bannerURL,
@@ -55,17 +56,20 @@ const postCreateBlog = async (req, res) => {
       readingTime: getReadingTime(content),
     });
 
-    //Kullanıcıların blog veclorilerini güncelleme
+    // Kullanıcının blog vektörlerini güncelleme
     user.blogs.push(newBlog._id);
     user.blogPublished++;
     await user.save();
 
-    //Yeni oluşturulan blog yazısı sayfasına yönlendir
+    // Yeni oluşturulan blog yazısı sayfasına yönlendir
     res.redirect(`blogs/${newBlog._id}`);
   } catch (error) {
     // Herhangi bir hata oluştuğunda log tut ve istemciye hata yanıtı gönder
     console.error("Blog oluşturulurken bir hata oluştu:", error.message);
-    throw error;
+    res.status(500).render("error", {
+      message:
+        "Blog oluşturulurken bir hata meydana geldi. Lütfen tekrar deneyin.",
+    });
   }
 };
 

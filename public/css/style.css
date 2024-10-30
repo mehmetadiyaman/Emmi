@@ -616,9 +616,8 @@ span.material-symbols-rounded {
 
 /* #COMPONENTS
 ----------------------
-
 /** 
-*Text field
+* Text field
 */
 
 .text-field-wrapper {
@@ -747,9 +746,7 @@ span.material-symbols-rounded {
 .btn:has(> .leading-icon) {
   padding-inline-start: var(--space-4);
 }
-.btn:has(> .leading-icon) {
-  padding-inline-end: var(--space-4);
-}
+
 .btn:has(> .trailing-icon) {
   padding-inline-end: var(--space-4);
 }
@@ -810,9 +807,11 @@ Snackbar
 .snackbar.success {
   background-color: #4caf50;
 }
+
 .snackbar.error {
   background-color: #f44336;
 }
+
 .snackbar.warning {
   background-color: #ff9800;
 }
@@ -842,7 +841,7 @@ Snackbar
 }
 
 /*
-*Avatar
+* Avatar
 */
 
 .avatar {
@@ -859,7 +858,7 @@ Snackbar
 }
 
 /*
-*Üst uygulama çubuğu
+* Üst uygulama çubuğu
 */
 .top-app-bar {
   background-color: var(--surface);
@@ -875,13 +874,14 @@ Snackbar
   translate: 0 0; /* translate kullanımı düzeltildi */
   border-block-end: 1px solid var(--outline-variant);
   transition: var(--tr-duration-short-2) var(--tr-easing-linear);
-  transition-property: background-color, translate, border-color; /* translate yerine transform */
+  transition-property: background-color, transform, border-color; /* translate yerine transform */
   z-index: 4;
 }
 
 .top-app-bar.hide {
   transform: translate(0, -100%);
 }
+
 .top-app-bar.active {
   background-color: var(--surface-container);
   box-shadow: var(--shadow-2);
@@ -900,7 +900,7 @@ Snackbar
 }
 
 /*
-#Menü
+# Menü
 */
 .menu-wrapper {
   position: relative;
@@ -947,7 +947,7 @@ Snackbar
 }
 
 /*
-#Liste
+# Liste
 */
 .list-item {
   display: flex;
@@ -1003,7 +1003,7 @@ Snackbar
 }
 
 /*
-#Divider
+# Divider
 */
 
 .divider {
@@ -1013,7 +1013,7 @@ Snackbar
 }
 
 /*
-#İcon Button
+# Icon Button
 */
 
 .icon-btn {
@@ -1071,6 +1071,7 @@ Snackbar
   animation: reaction-anim-remove var(--tr-duration-extra-long-1)
     var(--tr-easing-emphasized) forwards;
 }
+
 @keyframes reaction-anim-remove {
   0%,
   29.9% {
@@ -1091,7 +1092,8 @@ Snackbar
   }
 }
 
-.icon-btn .icon-btn[disabled] {
+.icon-btn[disabled] {
+  /* Düzeltilen kısım: "icon-btn .icon-btn[disabled]" olarak düzeltildi */
   background-color: var(--on-surface-disabled);
   color: var(--on-surface-disabled-text);
   pointer-events: none;
@@ -1099,7 +1101,7 @@ Snackbar
 }
 
 /*
-#İlerleme çubuğu(Progress)
+# İlerleme çubuğu (Progress)
 */
 
 .progress-bar {
@@ -1143,8 +1145,8 @@ Snackbar
     var(--tr-easing-emphasized-accelerate);
 }
 
-/**
-*Card
+/*
+* Card
 */
 
 .card {
@@ -1181,6 +1183,7 @@ Snackbar
   align-items: center;
   gap: var(--space-3);
 }
+
 .card-link {
   position: absolute;
   inset: 0;
@@ -1188,7 +1191,7 @@ Snackbar
 }
 
 /*
-#Pagination 
+# Pagination
 */
 
 .pagination {
@@ -1198,8 +1201,9 @@ Snackbar
   gap: var(--space-2);
   margin-block-start: var(--space-4);
 }
+
 /*
-#Diyalog
+# Diyalog
 */
 .dialog-root,
 .dialog-backdrop {
@@ -1215,9 +1219,11 @@ Snackbar
   isolation: isolate;
   z-index: 6;
 }
+
 .dialog-root.active {
   visibility: visible;
 }
+
 body:has(.dialog-root.active) {
   overflow: hidden;
 }
@@ -1261,6 +1267,7 @@ body:has(.dialog-root.active) {
     opacity: 1;
   }
 }
+
 .dialog-header {
   display: flex;
   justify-content: space-between;
@@ -1276,7 +1283,7 @@ body:has(.dialog-root.active) {
 }
 
 /*
-#Kayıt ve giriş sayfası
+# Kayıt ve giriş sayfası
 */
 
 .form-section {
@@ -1321,9 +1328,7 @@ body:has(.dialog-root.active) {
   height: 48px; /* Yükseklik artırıldı */
 }
 
-/*ANA SAYFA
-*/
-
+/* ANA SAYFA */
 .home-page .blog-list {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   align-items: stretch;
@@ -1333,9 +1338,7 @@ body:has(.dialog-root.active) {
   display: none;
 }
 
-/*FOOTER
-*/
-
+/* FOOTER */
 .footer {
   height: var(--footer-height);
   padding-block: var(--space-5);
@@ -1348,8 +1351,7 @@ body:has(.dialog-root.active) {
   opacity: 0.8;
 }
 
-/*Blog oluşturma
-*/
+/* Blog oluşturma */
 .blog-write-form {
   display: grid;
   gap: var(--space-4);
@@ -1395,8 +1397,7 @@ body:has(.dialog-root.active) {
   display: flex;
   justify-content: flex-end;
 }
-
-/*blog detay*/
+/* Blog detay */
 .blog-detail-page {
   padding-block-start: 0;
 }
@@ -1434,9 +1435,8 @@ body:has(.dialog-root.active) {
   margin-inline: auto;
   display: flex;
   gap: var(--space-4);
-  padding-block: var(--space-2);
+  padding: var(--space-2) var(--space-4); /* Düzeltildi: padding-block ve padding-inline birleştirildi */
   background-color: var(--surface-container);
-  padding-inline: var(--space-2) var(--space-4);
   border-radius: var(--radius-full);
   box-shadow: var(--shadow-1);
   border: 1px solid var(--outline-variant);
@@ -1473,7 +1473,7 @@ body:has(.dialog-root.active) {
 }
 
 .more-blog .blog-list::-webkit-scrollbar {
-  display: none;
+  display: none; /* Kaydırma çubuğu gizlendi */
 }
 
 .more-blog .card {
@@ -1567,18 +1567,20 @@ body:has(.dialog-root.active) {
   border: 1px solid var(--outline-variant);
 }
 
-/*Profil sayfası*/
+/* Profil sayfası */
 .profile-card {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
 }
+
 .profile-image {
   height: 160px;
   width: 160px;
   flex-shrink: 0;
   border-radius: var(--radius-full);
 }
+
 .bio {
   margin-block: var(--space-3);
 }
@@ -1602,8 +1604,7 @@ body:has(.dialog-root.active) {
   margin-block: var(--space-5);
 }
 
-/*404  sayfası*/
-
+/* 404 sayfası */
 .not-found-page .container {
   min-height: calc(
     100vh - var(--top-app-bar-height) - var(--footer-height) - var(--space-12)
@@ -1619,14 +1620,14 @@ body:has(.dialog-root.active) {
 }
 
 .text-404 {
-  max-width: 34ch;
+  max-width: 34ch; /* 404 metni için maksimum genişlik */
 }
+
 .not-found-page .btn-fill {
-  margin-block-start: var(--space-1);
+  margin-block-start: var(--space-1); /* Düğme için üst boşluk */
 }
 
-/*GÖSTERGE PANELİ*/
-
+/* GÖSTERGE PANELİ */
 .analytics-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
@@ -1654,11 +1655,11 @@ body:has(.dialog-root.active) {
 }
 
 .analytics-icon-box .material-symbols-rounded {
-  font-variation-settings: "FILL" 1;
+  font-variation-settings: "FILL" 1; /* İkon ayarı */
 }
 
 .analytics-card .card-title {
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-bold); /* Kalın başlık */
 }
 
 .post-lists {
@@ -1669,11 +1670,10 @@ body:has(.dialog-root.active) {
 }
 
 .post-lists .list-item:not(:last-child) {
-  border-block-end: 1px solid var(--outline-variant);
+  border-block-end: 1px solid var(--outline-variant); /* Son öğe dışındaki her bir öğe için alt kenar çizgisi */
 }
 
-/*AYARLAR*/
-
+/* AYARLAR */
 .settings-wrapper {
   margin-block-start: var(--space-4);
 }
@@ -1685,7 +1685,9 @@ body:has(.dialog-root.active) {
 }
 
 .settings-card:not(:last-child) {
-  margin-block-end: var(--space-2);
+  margin-block-end: var(
+    --space-2
+  ); /* Son kart dışındaki her kart için alt boşluk */
 }
 
 .settings-wrapper .title-wrapper {
@@ -1702,7 +1704,7 @@ body:has(.dialog-root.active) {
   border-radius: var(--radius-full);
   margin-block-start: var(--space-3);
   border-color: var(--outline);
-  overflow: visible;
+  overflow: visible; /* Taşan içerik görünür */
 }
 
 .avatar-image-field .label {
@@ -1716,18 +1718,18 @@ body:has(.dialog-root.active) {
   height: 100%; /* Yüksekliği de tam genişlik yaparak ortalama sağlıyoruz */
 }
 
-.avatar-image-field:has(.image-preview.show).label {
-  display: none;
+.avatar-image-field:has(.image-preview.show) .label {
+  display: none; /* Önizleme varsa label gizleniyor */
 }
 
 .avatar-image-field .image-preview {
   border-radius: var(--radius-full);
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 1 / 1; /* 1:1 en-boy oranı */
 }
 
 .avatar-image-field .icon-btn {
   top: 0;
-  right: 0;
+  right: 0; /* İkon butonu konumlandırma */
 }
 
 .settings-form .text-field-wrapper {
@@ -1736,13 +1738,13 @@ body:has(.dialog-root.active) {
 }
 
 .settings-card .card-text {
-  margin-block: var(--space-3) var(--space-4);
+  margin-block: var(--space-3) var(--space-4); /* Kart metni için üst ve alt boşluk */
 }
 
 /*KAYIT*/
 
-@media (min-widht: 600px) {
-  /*ANA SAYFA*/
+@media (min-width: 600px) {
+  /* ANA SAYFA */
   .home-page .card:not(:first-child) .card-banner {
     display: block;
   }
@@ -1750,8 +1752,8 @@ body:has(.dialog-root.active) {
 
 @media (min-width: 768px) {
   /*
-  *Raused
-  */
+   * Raused
+   */
   .page {
     padding-block: var(--space-6);
   }
@@ -1774,9 +1776,8 @@ body:has(.dialog-root.active) {
   }
 
   /*
-  *Üst çubuk
-  */
-
+   * Üst çubuk
+   */
   .top-app-bar {
     padding-inline: var(--space-6);
   }
@@ -1796,7 +1797,6 @@ body:has(.dialog-root.active) {
     -webkit-line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis;
-    line-clamp: 3; /* Standart versiyon, desteklenmese de uyarıyı gidermeye yardımcı olabilir */
   }
 
   .form-card {
@@ -1814,8 +1814,8 @@ body:has(.dialog-root.active) {
   }
 
   /*
-  *Blog oluşturma kısmı
-  */
+   * Blog oluşturma kısmı
+   */
   .blog-write-form {
     gap: var(--space-6);
     padding: var(--space-6);
@@ -1827,9 +1827,8 @@ body:has(.dialog-root.active) {
   }
 
   /*
-  *Blog detay kısmı
-  */
-
+   * Blog detay kısmı
+   */
   .blog-detail-page .container {
     padding-inline: var(--space-4);
   }
@@ -1840,7 +1839,7 @@ body:has(.dialog-root.active) {
 
   .blog-content,
   .more-blog {
-    padding-inline: unset;
+    padding-inline: 0; /* unset yerine 0 kullanılması önerilir */
   }
 
   .blog-content .title {
@@ -1849,9 +1848,8 @@ body:has(.dialog-root.active) {
   }
 
   /*
-  *Profil kısmı
-  */
-
+   * Profil kısmı
+   */
   .profile-card {
     flex-direction: row;
     align-items: center;
@@ -1878,33 +1876,30 @@ body:has(.dialog-root.active) {
 
 @media (min-width: 1200px) {
   /*
-  *Blog detay sayfası
-  */
+   * Blog detay sayfası
+   */
   .blog-actions {
     bottom: var(--space-6);
   }
 
   /*
-  *Profil sayfası
-  */
-
+   * Profil sayfası
+   */
   .profile-page .divider {
     margin-block: var(--space-6);
   }
 
   /*
-  *Gösterge paneli sayfası
-  */
-
+   * Gösterge paneli sayfası
+   */
   .post-lists .list-item {
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 
   /*
-  *Ayarlar sayfası
-  */
-
+   * Ayarlar sayfası
+   */
   .settings-card:not(:last-child) {
     margin-block-end: var(--space-4);
   }
