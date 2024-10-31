@@ -11,6 +11,11 @@ locals.user || {}; %>
 <html lang="tr">
   <head>
     <%- include('../layouts/head', { title: `${title} | Emmi` }) %>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
     <script type="module" src="/js/reaction.js" defer></script>
     <script type="module" src="/js/reading_list.js" defer></script>
     <script src="/js/script.js" defer></script>
@@ -66,14 +71,15 @@ locals.user || {}; %>
               <div class="leading-text">
                 <a
                   href="/profile/<%= authorUsername %>"
-                  class="title-medium text-on-surface text-link"
+                  class="title-medium author-link"
                   ><%= authorName %></a
                 >
-                <p class="body-small text-on-surface-variant">
-                  Yayınlandı <%=new
-                  Date(createdAt).toLocaleDateString('tr-TR',{month:'long',day:'numeric',year:'numeric'})%>
+                <p class="body-small publish-date">
+                  Yayınlandı <%= new Date(createdAt).toLocaleDateString('tr-TR',
+                  { month: 'long', day: 'numeric', year: 'numeric' }) %>
                 </p>
               </div>
+
               <% if(authorUsername==locals.sessionUser?.username) {%>
               <a href="/blogs/<%=currentBlogId%>/edit" class="btn filled-tonal">
                 <span

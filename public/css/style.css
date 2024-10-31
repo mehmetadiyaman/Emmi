@@ -1194,14 +1194,22 @@ Snackbar
 /*
 * Card
 */
-
 .card {
   background-color: var(--surface-container-highest);
   border-radius: var(--radius-medium);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  --state-layer-bg: var(--on-surface);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-banner img {
+  object-fit: cover;
 }
 
 .card-meta {
@@ -1215,16 +1223,24 @@ Snackbar
   margin-inline: auto;
 }
 
-.card .card-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-  gap: var(--space-4);
-  border-block-start: 1px solid var(--surface-variant);
+.card-content {
+  padding: var(--space-4);
 }
 
-.card-footer .wrapper {
+.card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-top: var(--space-2);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--surface-variant);
+  padding: var(--space-3);
+}
+
+.wrapper {
   display: flex;
   align-items: center;
   gap: var(--space-3);
@@ -1234,6 +1250,18 @@ Snackbar
   position: absolute;
   inset: 0;
   z-index: 1;
+}
+
+.state-layer {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.05); /* Hafif bir katman efekti */
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.card:hover .state-layer {
+  opacity: 1; /* Hover efekti ile görünür hale gelir */
 }
 
 /*
@@ -1372,6 +1400,56 @@ body:has(.dialog-root.active) {
   max-width: 100%; /* max-width hatası düzeltildi */
   width: 100%; /* Buton genişliği form kartına yayıldı */
   height: 48px; /* Yükseklik artırıldı */
+}
+/* İsim (author-link) Stili */
+.author-link {
+  color: var(--primary-light);
+  font-weight: 600;
+  font-size: 1.1rem;
+  font-family: "Montserrat", sans-serif; /* Yeni yazı tipi */
+  transition: color 0.3s, text-decoration 0.3s;
+  position: relative;
+}
+
+/* Hover efekti */
+.author-link:hover {
+  color: var(--inverse-primary-light);
+  text-decoration: none;
+}
+
+.author-link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--primary-light);
+  transition: width 0.3s ease;
+}
+
+.author-link:hover::after {
+  width: 100%;
+  background-color: var(--inverse-primary-light);
+}
+
+/* Dark Tema İçin */
+@media (prefers-color-scheme: dark) {
+  .author-link {
+    color: var(--primary-dark);
+  }
+
+  .author-link:hover {
+    color: var(--inverse-primary-dark);
+  }
+
+  .author-link::after {
+    background-color: var(--primary-dark);
+  }
+
+  .author-link:hover::after {
+    background-color: var(--inverse-primary-dark);
+  }
 }
 
 /* ANA SAYFA */

@@ -20,51 +20,47 @@ const compressedProfileURL = profilePhoto?.replace('upload/',
   <div class="card-content">
     <div class="card-meta">
       <div class="avatar">
-        <% if (compressedProfileURL) {%>
+        <% if (compressedProfileURL) { %>
         <img
-          src="<%=compressedProfileURL%>"
+          src="<%= compressedProfileURL %>"
           width="32"
           height="32"
-          alt="<%=name%>"
+          alt="<%= name %>"
           class="img-cover"
         />
-        <% }else { %>
+        <% } else { %>
         <p class="title-medium"><%= name[0] %></p>
         <% } %>
       </div>
-
       <div>
         <p class="label-large text-on-surface"><%= name %></p>
         <p class="body-small text-on-surface-variant">
-          <!-- toLocaleDateString düzeltildi -->
           <%= new Date(createdAt).toLocaleDateString('tr-TR', { month: 'long',
           day: 'numeric' }) %>
         </p>
         <p class="label-small text-on-surface-variant trailing-text">
-          <%=readingTime%> min okuma
+          <%= readingTime %> min okuma
         </p>
       </div>
     </div>
-    <h3 class="card-title title-medium text-on-surface"><%=title%></h3>
+    <h3 class="card-title title-medium text-on-surface"><%= title %></h3>
   </div>
   <div class="card-footer">
     <div class="wrapper">
       <span class="icon-small material-symbols-rounded text-on-surface"
         >favorite</span
       >
-      <p class="body-medium text-on-surface-variant">
-        <%=reaction%> Reaksiyonlar
-      </p>
+      <p class="body-medium text-on-surface-variant"><%= reaction %> Beğeni</p>
     </div>
     <div class="wrapper">
       <span class="icon-small material-symbols-rounded text-on-surface"
         >bookmark</span
       >
       <p class="body-medium text-on-surface-variant">
-        <%=totalBookmark%> Yer İmleri
+        <%= totalBookmark %> Kaydedilme
       </p>
     </div>
   </div>
-  <a href="/blogs/<%=blogId%>" title="<%=title%>" class="card-link"></a>
+  <a href="/blogs/<%= blogId %>" title="<%= title %>" class="card-link"></a>
   <div class="state-layer"></div>
 </div>
