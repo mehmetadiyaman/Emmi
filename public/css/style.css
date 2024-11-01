@@ -1190,10 +1190,135 @@ Snackbar
   transition: transform var(--tr-duration-short-2)
     var(--tr-easing-emphasized-accelerate);
 }
+/* Ortalanmış Menü */
+.nav-bar {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
 
-/*
-* Card
-*/
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+  color: var(--text-color);
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+  background-color: var(--hover-bg-color);
+}
+/* Kategoriler Butonu ve Şık Açılır Menü */
+.categories {
+  position: relative;
+}
+
+.categories-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+/* Kategoriler Menüsü - Grid ve Sütun Düzeni */
+.categories-menu {
+  display: none; /* Varsayılan olarak gizli */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(
+    --surface-container
+  ); /* Açılır menünün arka plan rengi */
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  opacity: 0; /* Başlangıçta görünmez */
+  transform: translateY(-20px) scale(0.8); /* Yukarıdan kayma ve ölçekleme efekti */
+  transition: opacity 0.4s ease, transform 0.4s ease; /* Geçiş efekti */
+}
+
+/* Menü Görünür Hale Getirme */
+.categories-menu.show {
+  display: grid;
+  opacity: 1; /* Görünür hale gelir */
+  transform: translateY(0) scale(1); /* Yukarıdan kayma ve ölçekleme sona erer */
+}
+
+/* Menü görseli için ayar */
+.categories-menu {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 sütunlu grid */
+  gap: 20px; /* Kategoriler arası boşluk */
+}
+
+/* Kategori Linkleri - Şık Görünüm ve Animasyonlar */
+.category-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--light-text-color); /* Varsayılan metin rengi (açık ton) */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  animation: popIn 0.4s ease; /* Başlangıç animasyonu */
+}
+
+@keyframes popIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hover Efekti ve Animasyonu */
+.category-link:hover {
+  transform: scale(1.1) rotate(3deg); /* Büyüme ve döndürme efekti */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Daha belirgin gölge efekti */
+  animation: hoverEffect 0.3s ease; /* Hover animasyonu */
+}
+
+@keyframes hoverEffect {
+  0% {
+    transform: scale(1) rotate(0deg); /* Başlangıç durumu */
+  }
+  50% {
+    transform: scale(1.1) rotate(3deg); /* En büyük ve döndürülmüş hali */
+  }
+  100% {
+    transform: scale(1) rotate(0deg); /* Son durum */
+  }
+}
+
+/* Metin Fade-in Animasyonu */
+.category-link span {
+  display: inline-block;
+  opacity: 0; /* Başlangıçta görünmez */
+  transform: translateY(10px); /* Aşağıdan yukarı kayma efekti */
+  transition: opacity 0.4s ease, transform 0.4s ease; /* Geçiş efekti */
+}
+
+.category-link:hover span {
+  opacity: 1; /* Üzerine gelindiğinde görünür hale gelir */
+  transform: translateY(0); /* Yukarı kayar */
+}
+
+/* Card */
 .card {
   background-color: var(--surface-container-highest);
   border-radius: var(--radius-medium);
@@ -1201,17 +1326,29 @@ Snackbar
   flex-direction: column;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Yumuşak geçişler */
+  position: relative; /* Animasyon için gerekli */
 }
 
+/* Hover durumu için animasyon */
 .card:hover {
-  transform: translateY(-4px);
+  transform: scale(1.05); /* Hafif büyüme */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25); /* Daha belirgin gölge */
+  filter: brightness(1.1); /* Parlaklık artışı */
 }
 
+/* Kartın banner kısmındaki resim */
 .card-banner img {
   object-fit: cover;
+  transition: transform 0.3s ease; /* Resim geçişi */
 }
 
+/* Resmin hover durumunda büyümesi */
+.card:hover .card-banner img {
+  transform: scale(1.1); /* Resmin hafif büyümesi */
+}
+
+/* Kart meta kısmı */
 .card-meta {
   display: flex;
   align-items: center;
@@ -1219,20 +1356,24 @@ Snackbar
   margin-block-end: var(--space-3);
 }
 
+/* Meta altındaki metin */
 .card-meta .trailing-text {
   margin-inline: auto;
 }
 
+/* Kartın içeriği */
 .card-content {
   padding: var(--space-4);
 }
 
+/* Kart başlığı */
 .card-title {
   font-size: 1.25rem;
   font-weight: bold;
   margin-top: var(--space-2);
 }
 
+/* Kart alt kısmı */
 .card-footer {
   display: flex;
   justify-content: space-between;
@@ -1240,18 +1381,21 @@ Snackbar
   padding: var(--space-3);
 }
 
+/* Wrapper */
 .wrapper {
   display: flex;
   align-items: center;
   gap: var(--space-3);
 }
 
+/* Kart linki */
 .card-link {
   position: absolute;
   inset: 0;
   z-index: 1;
 }
 
+/* Durum katmanı */
 .state-layer {
   position: absolute;
   inset: 0;
@@ -1260,8 +1404,9 @@ Snackbar
   transition: opacity 0.2s;
 }
 
+/* Hover efekti ile görünür hale gelir */
 .card:hover .state-layer {
-  opacity: 1; /* Hover efekti ile görünür hale gelir */
+  opacity: 1;
 }
 
 /*
@@ -1876,9 +2021,34 @@ body:has(.dialog-root.active) {
   .home-page .card:not(:first-child) .card-banner {
     display: block;
   }
+
+  /*Navbar*/
+  .nav-bar {
+    padding: 20px; /* Daha büyük ekranlar için padding artırma */
+  }
+
+  .nav-item {
+    margin-right: 24px; /* Sağda daha fazla boşluk */
+  }
+
+  .categories-menu {
+    max-width: 300px; /* Menü için maksimum genişlik */
+  }
 }
 
 @media (min-width: 768px) {
+  .nav-bar {
+    padding: 24px; /* Daha geniş ekranlar için padding artırma */
+  }
+
+  .nav-item {
+    margin-right: 32px; /* Sağda daha fazla boşluk */
+  }
+
+  .categories-menu {
+    max-width: 400px; /* Menü için maksimum genişlik */
+  }
+
   /*
    * Raused
    */
@@ -2004,6 +2174,17 @@ body:has(.dialog-root.active) {
 }
 
 @media (min-width: 1200px) {
+  .nav-bar {
+    padding: 30px; /* En geniş ekranlar için padding artırma */
+  }
+
+  .nav-item {
+    margin-right: 40px; /* Sağda daha fazla boşluk */
+  }
+
+  .categories-menu {
+    max-width: 500px; /* Menü için maksimum genişlik */
+  }
   /*
    * Blog detay sayfası
    */
