@@ -9,7 +9,7 @@ const $topAppBar = document.querySelector("[data-top-app-bar]");
 let lastScrollPos = 0;
 
 /**
- * olay dinleyicisini pencere kaydırma olayına ekler, kaydırma konumuna göre üst uygulama çubuğunda sınıflar arasında geçiş yapar
+ * Olay dinleyicisini pencere kaydırma olayına ekler, kaydırma konumuna göre üst uygulama çubuğunda sınıflar arasında geçiş yapar
  */
 window.addEventListener("scroll", (event) => {
   $topAppBar.classList[window.scrollY > 50 ? "add" : "remove"]("active");
@@ -22,15 +22,26 @@ window.addEventListener("scroll", (event) => {
 /**
  * Geçiş Menüsü
  */
-
 const $menuWrappers = document.querySelectorAll("[data-menu-wrapper]");
 
-$menuWrappers?.forEach(function ($menuWrapper) {
+$menuWrappers.forEach(function ($menuWrapper) {
   const $menuToggler = $menuWrapper.querySelector("[data-menu-toggler]");
   const $menu = $menuWrapper.querySelector("[data-menu]");
 
-  $menuToggler.addEventListener("click", () => {
+  $menuToggler.addEventListener("click", (event) => {
+    event.stopPropagation(); // Tıklamanın sayfada başka bir yere yayılmasını engeller
     $menu.classList.toggle("active");
+  });
+});
+
+// Sayfanın herhangi bir yerine tıklanırsa menüyü kapat
+document.addEventListener("click", function (event) {
+  $menuWrappers.forEach(function ($menuWrapper) {
+    const $menu = $menuWrapper.querySelector("[data-menu]");
+    // Tıklama menü veya açma-kapama düğmesi dışında bir yere yapıldıysa menüyü kapat
+    if (!$menuWrapper.contains(event.target)) {
+      $menu.classList.remove("active");
+    }
   });
 });
 
@@ -44,7 +55,7 @@ const handleBackward = function () {
 $backBtn?.addEventListener("click", handleBackward);
 
 /**
- * form yazı yüksekliği otomatik ayarla
+ * Form yazı yüksekliği otomatik ayarla
  */
 const $autoHeightTextarea = document.querySelector(
   "[data-textarea-auto-height]"
@@ -55,5 +66,5 @@ const textareaAutoHeight = function () {
 };
 $autoHeightTextarea?.addEventListener("input", textareaAutoHeight);
 
-//başlangıç ​​metin alanı yüksekliğini ayarla
+// Başlangıç ​​metin alanı yüksekliğini ayarla
 $autoHeightTextarea && textareaAutoHeight.call($autoHeightTextarea);

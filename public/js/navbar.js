@@ -1,4 +1,25 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Ana sayfa kontrolü (URL veya bir sınıf ile)
+  if (
+    window.location.pathname === "/" ||
+    document.body.classList.contains("home-page")
+  ) {
+    const navItems = document.querySelectorAll(".nav-item"); // Navbar elemanlarını seç
+
+    // Her eleman için animasyonu uygula
+    navItems.forEach((item, index) => {
+      item.style.opacity = 0; // Başlangıçta görünmez
+      item.style.transform = "translateY(20px)"; // Yukarı kaydır
+      item.style.transition = `opacity 0.6s ease ${
+        index * 0.2
+      }s, transform 0.6s ease ${index * 0.2}s`; // Gecikmeli geçiş
+      setTimeout(() => {
+        item.style.opacity = 1; // Görünür hale getir
+        item.style.transform = "translateY(0)"; // Başlangıç pozisyonuna getir
+      }, 100); // 100ms sonra animasyonu başlat
+    });
+  }
+
   const toggleButton = document.querySelector(".categories-btn"); // Kategoriler butonunu seç
   const categoriesMenu = document.querySelector(".categories-menu"); // Menü
   const categoryLinks = document.querySelectorAll(".category-link"); // Tüm kategori bağlantılarını seç

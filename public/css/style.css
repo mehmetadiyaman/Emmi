@@ -1107,7 +1107,7 @@ Snackbar
   opacity: 0;
   visibility: hidden;
   transition: var(--tr-duration-short-3) var(--tr-easing-emphasized-accelerate);
-  transition-property: scale, opacity;
+  transition-property: scale, opacity, visibility;
   will-change: scale, opacity;
 }
 
@@ -1131,7 +1131,6 @@ Snackbar
 .menu-item .icon {
   color: var(--on-surface-variant);
 }
-
 /*
 # Liste
 */
@@ -1333,7 +1332,7 @@ Snackbar
 /* Ortalanmış Menü */
 .nav-bar {
   display: flex;
-  gap: 30px;
+  gap: 15px; /* Elemanlar arasındaki boşluk azaltıldı */
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -1342,11 +1341,11 @@ Snackbar
 .nav-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px; /* İkon ve metin arasındaki boşluk azaltıldı */
   font-size: 16px;
   color: var(--text-color);
   text-decoration: none;
-  padding: 8px 12px;
+  padding: 6px 10px; /* İçerik dolgusu azaltıldı */
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
@@ -1354,6 +1353,7 @@ Snackbar
 .nav-item:hover {
   background-color: var(--hover-bg-color);
 }
+
 /* Kategoriler Butonu ve Şık Açılır Menü */
 .categories {
   position: relative;
@@ -1385,6 +1385,7 @@ Snackbar
   opacity: 0; /* Başlangıçta görünmez */
   transform: translateY(-20px) scale(0.8); /* Yukarıdan kayma ve ölçekleme efekti */
   transition: opacity 0.4s ease, transform 0.4s ease; /* Geçiş efekti */
+  pointer-events: none; /* Menü kapalıyken tıklanma olayını engeller */
 }
 
 /* Menü Görünür Hale Getirme */
@@ -1392,6 +1393,7 @@ Snackbar
   display: grid;
   opacity: 1; /* Görünür hale gelir */
   transform: translateY(0) scale(1); /* Yukarıdan kayma ve ölçekleme sona erer */
+  pointer-events: auto; /* Menü açıldığında tıklanabilir hale gelir */
 }
 
 /* Menü görseli için ayar */
