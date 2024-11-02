@@ -85,8 +85,13 @@ const handlePublishBlog = async function (event) {
   // Yanıtın başarılı olduğu durumu ele alma
   if (response.ok) {
     Snackbar({ message: "Blog başarıyla oluşturuldu.", type: "success" });
+
     $progressBar.classList.add("loading-end");
-    return (window.location = response.url);
+
+    // 3 saniye bekleyip response.url'e yönlendir
+    setTimeout(() => {
+      window.location = response.url; // response.url'e yönlendir
+    }, 1000); // 3 saniye bekleme
   }
 
   // 400 dönen istekler

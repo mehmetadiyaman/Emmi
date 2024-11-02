@@ -5,6 +5,56 @@
  */
 
 import Snackbar from "./snackbar.js";
+// Fonksiyon: Göz simgesine tıklandığında şifreyi göster/gizle
+const togglePasswordVisibility = (inputId, iconId) => {
+  const passwordInput = document.getElementById(inputId);
+  const eyeIcon = document.getElementById(iconId).querySelector("span");
+
+  const isPasswordVisible = passwordInput.type === "text";
+  passwordInput.type = isPasswordVisible ? "password" : "text"; // Şifreyi göster veya gizle
+  eyeIcon.textContent = isPasswordVisible ? "visibility_off" : "visibility"; // Göz simgesini değiştir
+};
+
+// Fonksiyon: Göz simgesinin görünürlüğünü ayarla
+const updateEyeIconVisibility = (inputId, iconId) => {
+  const passwordInput = document.getElementById(inputId);
+  const eyeIcon = document.getElementById(iconId);
+
+  // Input alanı odaklandığında veya yazıldığında göz simgesini göster
+  eyeIcon.style.display =
+    passwordInput.value !== "" || document.activeElement === passwordInput
+      ? "block"
+      : "none";
+};
+
+// Göz simgesine tıklama ve görünürlük olay dinleyicilerini ekle
+const addPasswordFieldListeners = (inputId, iconId) => {
+  const eyeIcon = document.getElementById(iconId);
+  const passwordInput = document.getElementById(inputId);
+
+  // Tıklandığında şifre görünürlüğünü değiştir
+  eyeIcon.addEventListener("click", () =>
+    togglePasswordVisibility(inputId, iconId)
+  );
+
+  // Input alanına odaklanıldığında ve yazıldığında göz simgesini göster
+  passwordInput.addEventListener("focus", () =>
+    updateEyeIconVisibility(inputId, iconId)
+  );
+  passwordInput.addEventListener("input", () =>
+    updateEyeIconVisibility(inputId, iconId)
+  );
+
+  // Input alanından çıkıldığında göz simgesinin görünürlüğünü kontrol et
+  passwordInput.addEventListener("blur", () => {
+    if (passwordInput.value === "") {
+      eyeIcon.style.display = "none"; // Göz simgesini gizle
+    }
+  });
+};
+
+// Göz simgeleri için olay dinleyicilerini ekle
+addPasswordFieldListeners("password", "togglePassword");
 
 const $form = document.querySelector("[data-form]");
 const $submitBtn = document.querySelector("[data-submit-btn]");

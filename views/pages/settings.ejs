@@ -161,49 +161,70 @@ profilePhotoURL?.replace('upload/', 'upload/w_200,h_200,c_auto,q_auto/f_auto/');
                   <label for="old-password" class="label body-large"
                     >Eski şifre</label
                   >
-                  <input
-                    type="password"
-                    name="old_password"
-                    id="old-password"
-                    autocomplete="current-password"
-                    placeholder=""
-                    required
-                    class="body-large text-field"
-                    aria-label="Eski şifre"
-                  />
+                  <div class="input-wrapper">
+                    <input
+                      type="password"
+                      name="old_password"
+                      id="old-password"
+                      autocomplete="current-password"
+                      placeholder=" "
+                      required
+                      class="body-large text-field"
+                      aria-label="Eski şifre"
+                    />
+                    <div class="eye-icon" id="toggleOldPassword">
+                      <span class="material-symbols-rounded"
+                        >visibility_off</span
+                      >
+                    </div>
+                  </div>
                 </div>
 
                 <div class="text-field-wrapper">
                   <label for="new-password" class="label body-large"
                     >Yeni şifre</label
                   >
-                  <input
-                    type="password"
-                    name="password"
-                    id="new-password"
-                    autocomplete="new-password"
-                    placeholder=""
-                    required
-                    minlength="8"
-                    class="body-large text-field"
-                    aria-label="Yeni şifre"
-                  />
+                  <div class="input-wrapper">
+                    <input
+                      type="password"
+                      name="password"
+                      id="new-password"
+                      autocomplete="new-password"
+                      placeholder=" "
+                      required
+                      minlength="8"
+                      class="body-large text-field"
+                      aria-label="Yeni şifre"
+                    />
+                    <div class="eye-icon" id="toggleNewPassword">
+                      <span class="material-symbols-rounded"
+                        >visibility_off</span
+                      >
+                    </div>
+                  </div>
                 </div>
 
                 <div class="text-field-wrapper">
                   <label for="confirm-password" class="label body-large"
                     >Yeni şifre tekrar</label
                   >
-                  <input
-                    type="password"
-                    name="confirm_password"
-                    id="confirm-password"
-                    autocomplete="confirm-password"
-                    placeholder=""
-                    required
-                    class="body-large text-field"
-                    aria-label="Yeni şifre tekrar"
-                  />
+                  <div class="input-wrapper">
+                    <input
+                      type="password"
+                      name="confirm_password"
+                      id="confirm-password"
+                      autocomplete="confirm-password"
+                      placeholder=" "
+                      required
+                      class="body-large text-field"
+                      aria-label="Yeni şifre tekrar"
+                    />
+                    <div class="eye-icon" id="toggleConfirmPassword">
+                      <span class="material-symbols-rounded"
+                        >visibility_off</span
+                      >
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>

@@ -649,6 +649,36 @@ span.material-symbols-rounded {
   box-shadow: inset 0 0 0 3px var(--error); /* Focus durumunda daha kalın border */
 }
 
+.input-wrapper {
+  position: relative;
+  height: 100%; /* Alanın tamamını kapla */
+}
+
+.text-field {
+  width: 100%;
+  height: 100%;
+  padding-right: 40px; /* Göz simgesi için yeterli alan bırak */
+  box-sizing: border-box; /* Padding'in genişlik ve yükseklik hesabına dahil edilmesi için */
+}
+.input-wrapper input:focus + .eye-icon,
+.input-wrapper input:not(:placeholder-shown) + .eye-icon {
+  display: block; /* Input alanına odaklanıldığında veya boş değilse göz simgesini göster */
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px; /* İkonun sağdan 10px uzaklıkta olmasını sağlar */
+  top: 50%; /* İkonu dikey olarak ortalamak için */
+  transform: translateY(-50%); /* İkonu tam ortalamak için */
+  cursor: pointer; /* İkonu tıklanabilir yapar */
+  display: none; /* İlk başta göz simgesini gizle */
+}
+
+.eye-icon span {
+  font-size: 18px; /* Göz simgesinin boyutu */
+  color: var(--on-surface); /* İstenilen renk değişkenini kullanabilirsiniz */
+}
+
 .label {
   position: absolute;
   top: 50%;
@@ -883,6 +913,116 @@ Snackbar
   to {
     opacity: 0;
     transform: translateY(100%);
+  }
+}
+/* Modal kaplama */
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8); /* Koyu arka plan */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal-wrapper.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Modal genel stili */
+.modal {
+  background-color: var(--surface-container); /* Arka plan rengi */
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Daha derin gölge */
+  width: 400px;
+  max-width: 90%; /* Ekranı aşmaması için maksimum genişlik */
+  text-align: center;
+  transform: translateY(-30px); /* Başlangıç pozisyonu */
+  animation: modal-slide-in 0.4s ease-out forwards; /* Giriş animasyonu */
+}
+
+/* Modal içerik düzeni */
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-content p {
+  font-weight: 500; /* Kalın yazı */
+  font-size: 15px; /* Yazı boyutu */
+  color: var(--on-surface); /* Yazı rengi */
+  margin-bottom: 10px; /* Alt boşluk */
+  line-height: 1.5; /* Satır yüksekliği */
+  text-align: center; /* Ortaya hizalama */
+}
+
+/* Buton stili */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between; /* Butonlar arası boşluk */
+  width: 100%;
+}
+
+.modal-content button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--primary); /* Evet buton rengi */
+  color: var(--on-primary); /* Evet buton yazı rengi */
+  font-size: 16px;
+  flex: 1; /* Eşit genişlikte butonlar */
+  margin: 0 5px; /* Butonlar arasında boşluk */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-content button:hover {
+  background-color: var(--primary-light); /* Evet butonu hover rengi */
+  transform: scale(1.05); /* Hoverda büyüme efekti */
+}
+
+/* İptal buton stili */
+.modal-content #cancel-btn {
+  background-color: var(--error); /* Hayır buton rengi */
+  color: var(--on-error); /* Hayır buton yazı rengi */
+}
+
+.modal-content #cancel-btn:hover {
+  background-color: var(--on-error-container); /* Hayır butonu hover rengi */
+}
+
+/* Modal giriş animasyonu */
+@keyframes modal-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-30px); /* Yukarıdan geliyormuş gibi */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Modal kapanma animasyonu */
+@keyframes modal-slide-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(30px); /* Aşağıya kayarak kapanma */
   }
 }
 

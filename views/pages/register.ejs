@@ -11,7 +11,7 @@
           <div class="card-header">
             <a href="/" class="logo">
               <img
-                src="/images/logo-lijght.svg"
+                src="/images/logo-light.svg"
                 alt="Emmi"
                 width="163"
                 height="40"
@@ -57,29 +57,45 @@
             </div>
             <div class="text-field-wrapper">
               <label for="password" class="body-large label">Şifre</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                placeholder=" "
-                minlength="8"
-                required
-                class="body-large text-field"
-              />
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder=" "
+                  minlength="8"
+                  required
+                  class="body-large text-field"
+                />
+                <div class="eye-icon" id="togglePassword" style="display: none">
+                  <span class="material-symbols-rounded">visibility_off</span>
+                </div>
+              </div>
             </div>
+
             <div class="text-field-wrapper">
               <label for="confirm-password" class="body-large label"
                 >Şifre tekrar</label
               >
-              <input
-                type="password"
-                name="confirm_password"
-                id="confirm-password"
-                placeholder=" "
-                required
-                class="body-large text-field"
-              />
+              <div class="input-wrapper">
+                <input
+                  type="password"
+                  name="confirm_password"
+                  id="confirm-password"
+                  placeholder=" "
+                  required
+                  class="body-large text-field"
+                />
+                <div
+                  class="eye-icon"
+                  id="toggleConfirmPassword"
+                  style="display: none"
+                >
+                  <span class="material-symbols-rounded">visibility_off</span>
+                </div>
+              </div>
             </div>
+
             <button type="submit" class="btn btn-fill" data-submit-btn>
               <p class="label-large">Kayıt ol</p>
               <div class="state-layer"></div>
