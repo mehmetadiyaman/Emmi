@@ -164,3 +164,9 @@ fs.readFile('./src/scrapers/data.json', 'utf8', (err, data) => {
     const titles = JSON.parse(data);
     console.log('Haber Başlıkları:', titles);
 });
+
+
+
+
+
+
