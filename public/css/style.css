@@ -1056,12 +1056,29 @@ Snackbar
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
+  padding-right: 80px;
   padding-inline: var(--space-4);
   translate: 0 0; /* translate kullanımı düzeltildi */
   border-block-end: 1px solid var(--outline-variant);
   transition: var(--tr-duration-short-2) var(--tr-easing-linear);
   transition-property: background-color, transform, border-color; /* translate yerine transform */
   z-index: 4;
+}
+
+.top-app-bar h1 {
+  margin: 0;
+}
+
+.search-box {
+  margin-left: auto;
+  margin-right: 5px;
+  display: flex;
+  align-items: center;
+  background-color: var(--on-surface);
+  border-radius: 24px;
+  padding: 8px 16px;
+  width: 300px;
 }
 
 .top-app-bar.hide {
@@ -2366,32 +2383,3 @@ body:has(.dialog-root.active) {
     gap: var(--space-5);
   }
 }
-
-.top-app-bar {
-  
-  display: flex;
-  align-items: center;
-  padding: 10px;
-  padding-right: 80px; /* Sağ taraftan ekstra boşluk ekleyin */
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  justify-content: space-between;
-}
-
-.top-app-bar h1 {
-  margin: 0;
-}
-
-.search-box {
-  margin-left: auto;
-  margin-right: 5px;
-  display: flex;
-  align-items: center;
-  background-color: #f5f5f5;
-  border-radius: 24px;
-  padding: 8px 16px;
-  width: 300px;
-}
-
-
-
