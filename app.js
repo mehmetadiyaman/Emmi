@@ -28,6 +28,8 @@ const profile = require("./src/routes/profile_route");
 const dashboard = require("./src/routes/dashboard_route");
 const deleteBlog = require("./src/routes/blog_delete_route");
 const settings = require("./src/routes/settings_route");
+const categories = require("./src/routes/categories_route");
+
 /**
  * ilk ekspres
  */
@@ -131,6 +133,11 @@ app.use("/blogs", blogUpdate, deleteBlog);
  * Blog güncelleme
  */
 app.use("/dashboard", dashboard);
+
+/**
+ * Kategori
+ */
+app.use("/categories", categories);
 
 /**
  * Blog güncelleme
