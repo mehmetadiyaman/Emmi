@@ -147,26 +147,3 @@ const server = app.listen(PORT, async () => {
 });
 
 server.on("kapat", async () => await disconnectDB());
-
-
-
-
-// kullanmöak istediğim json verisi
-
-const fs = require('fs');
-
-// JSON dosyasını okuma
-fs.readFile('./src/scrapers/data.json', 'utf8', (err, data) => {
-    if (err) {
-        console.error('Dosya okuma hatası:', err);
-        return;
-    }
-    const titles = JSON.parse(data);
-    console.log('Haber Başlıkları:', titles);
-});
-
-
-
-
-
-
