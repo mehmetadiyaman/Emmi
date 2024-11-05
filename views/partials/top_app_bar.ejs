@@ -35,101 +35,50 @@ profilePhoto?.replace('upload/', 'upload/w_40,h_40,c_auto,q_auto/f_auto/'); %>
     />
   </a>
 
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+    rel="stylesheet"
+  />
   <div class="search-box">
-      <span class="search-icon">🔍</span>
-      <input
-          type="text"
-          id="search-input"
-          placeholder="Search"
-          onkeypress="handleSearch(event)"
-      />
-</div>
+    <span class="material-icons-round search-icon">search</span>
+    <input
+      type="text"
+      id="search-input"
+      placeholder="Arama"
+      onkeypress="handleSearch(event)"
+    />
+  </div>
 
-<!-- Arama Sonuçları Bölümü -->
-<ul id="results-list" class="results-list"></ul>
+  <!-- Arama Sonuçları Bölümü -->
+  <ul id="results-list" class="results-list"></ul>
 
-<script>
-  async function handleSearch(event) {
-      if (event.key === 'Enter') {
-          const query = event.target.value;
-          try {
-              const response = await fetch(`/api/search?q=${query}`);
-              const results = await response.json();
-              const resultsList = document.getElementById('results-list');
-              resultsList.innerHTML = '';
+  <script>
+    async function handleSearch(event) {
+      if (event.key === "Enter") {
+        const query = event.target.value;
+        try {
+          const response = await fetch(`/api/search?q=${query}`);
+          const results = await response.json();
+          const resultsList = document.getElementById("results-list");
+          resultsList.innerHTML = "";
 
-              results.forEach(post => {
-                  const listItem = document.createElement('li');
-                  listItem.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p>`;
-                  resultsList.appendChild(listItem);
-              });
-          } catch (error) {
-              console.error('Arama hatası:', error);
-          }
+          results.forEach((post) => {
+            const listItem = document.createElement("li");
+            listItem.innerHTML = `<h3>${post.title}</h3><p>${post.content}</p>`;
+            resultsList.appendChild(listItem);
+          });
+        } catch (error) {
+          console.error("Arama hatası:", error);
+        }
       }
-  }
-</script>
+    }
+  </script>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <nav class="nav-bar">
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons+Round"
+    rel="stylesheet"
+  />
+  <div class="nav-bar">
     <!-- Anasayfa -->
     <a href="/" class="nav-item">
       <span class="material-symbols-rounded">home</span> Anasayfa
@@ -161,11 +110,16 @@ profilePhoto?.replace('upload/', 'upload/w_40,h_40,c_auto,q_auto/f_auto/'); %>
       </div>
     </div>
 
+    <!-- Güncel Haberler -->
+    <a href="/" class="nav-item">
+      <span class="material-symbols-rounded">newspaper</span> Güncel Haberler
+    </a>
+
     <!-- İletişim -->
     <a href="/contact" class="nav-item">
       <span class="material-symbols-rounded">mail</span> İletişim
     </a>
-  </nav>
+  </div>
 
   <div class="trailing-action-wrapper">
     <% if (userAuthenticated) { %> <% if (locals.route !== '/createblog') { %>

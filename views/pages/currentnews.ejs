@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <%- include('../layouts/head', { title: 'Güncel Haberler | Emmi' }) %>
+    <script src="/js/script.js" defer></script>
+  </head>
+  <body>
+    <%- include("../partials/top_app_bar") %>
+
+    <main class="main">
+      <article class="page current-news-page">
+        <div class="container">
+          <h2 class="headline-small page-title text-on-surface">
+            Güncel Haberler
+          </h2>
+          <div class="blog-list">
+            <% if (news.length) { %> <% news.forEach(item => { %>
+            <div class="card">
+              <h3 class="card-title">
+                <a href="<%= item.link %>" target="_blank"><%= item.title %></a>
+              </h3>
+              <div class="card-content">
+                <div class="card-description">
+                  <!-- HTML içeriğini güvenli bir şekilde yerleştiriyoruz -->
+                  <%- item.summary %>
+                  <!-- %> ile yerleştiriyoruz -->
+                </div>
+                <small class="card-date">
+                  Yayınlanma Tarihi: <%= new
+                  Date(item.published).toLocaleString("tr-TR") %>
+                </small>
+              </div>
+            </div>
+            <% }) %> <% } else { %>
+            <p>Henüz güncel haber bulunmamaktadır.</p>
+            <% } %>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <%- include("../layouts/footer") %>
+  </body>
+</html>

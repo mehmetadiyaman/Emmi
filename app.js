@@ -11,6 +11,7 @@ const express = require("express");
 require("dotenv").config();
 const session = require("express-session"); // express-session kullanımı
 const MongoStore = require("connect-mongo");
+
 /**
  * özel modüller
  */
@@ -29,6 +30,7 @@ const dashboard = require("./src/routes/dashboard_route");
 const deleteBlog = require("./src/routes/blog_delete_route");
 const settings = require("./src/routes/settings_route");
 const categories = require("./src/routes/categories_route");
+const currentnews = require("./src/routes/current_news_route"); // currentnews modülünü doğru şekilde ekledik
 
 /**
  * ilk ekspres
@@ -138,6 +140,11 @@ app.use("/dashboard", dashboard);
  * Kategori
  */
 app.use("/categories", categories);
+
+/**
+ * Güncel Haberler
+ */
+app.use("/currentnews", currentnews);
 
 /**
  * Blog güncelleme
