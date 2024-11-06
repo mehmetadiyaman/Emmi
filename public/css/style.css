@@ -1521,6 +1521,89 @@ Snackbar
   transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Yumuşak geçişler */
   position: relative; /* Animasyon için gerekli */
 }
+/* Genel Kart Stil */
+.news-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.news-card-content {
+  padding: 20px;
+}
+
+.news-card-banner {
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.news-img-cover {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.news-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.news-label {
+  font-size: 12px;
+  color: #6c757d;
+  text-transform: uppercase;
+}
+
+.news-meta-date {
+  font-size: 14px;
+  color: #343a40;
+}
+
+.news-card-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #212529;
+  margin: 10px 0;
+}
+
+.news-card-summary {
+  font-size: 16px;
+  color: #495057;
+  line-height: 1.5;
+}
+
+.news-card-footer {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+}
+
+.footer-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.news-icon {
+  font-size: 18px;
+  color: #007bff;
+}
+
+.news-footer-link {
+  font-size: 14px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.news-footer-link:hover {
+  text-decoration: underline;
+}
 
 /* Hover durumu için animasyon */
 .card:hover {

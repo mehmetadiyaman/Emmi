@@ -1,0 +1,46 @@
+<div class="card">
+  <% const { title, link, published, summary } = locals.article; %>
+  <% const articleImage = summary.match(/<img[^>]*src=["']([^"']+)["']/); %>
+  <% const imageUrl = articleImage ? articleImage[1] : ''; %>
+
+  <!-- Kart İçeriği -->
+  <div class="card-content">
+    <!-- Görsel -->
+    <% if (imageUrl) { %>
+    <figure class="card-banner img-holder">
+      <img
+        src="<%= imageUrl %>"
+        width="360"
+        height="155"
+        alt="<%= title %>"
+        class="img-cover"
+      />
+    </figure>
+    <% } %>
+    
+    <!-- Başlık ve İçerik -->
+    <div class="card-meta">
+      <p class="label-large text-on-surface">Yayınlanma Tarihi</p>
+      <p class="body-small text-on-surface-variant">
+        <%= new Date(published).toLocaleDateString('tr-TR', { month: 'long', day: 'numeric', year: 'numeric' }) %>
+      </p>
+    </div>
+
+    <h3 class="card-title title-medium text-on-surface"><%= title %></h3>
+    <p class="card-summary text-on-surface-variant">
+      <%= summary.replace(/<img[^>]*>/g, '') %>
+    </p>
+  </div>
+
+  <!-- Kart Footer (Bağlantı) -->
+  <div class="card-footer">
+    <div class="wrapper">
+      <span class="icon-small material-symbols-rounded text-on-surface">link</span>
+      <a href="<%= link %>" class="body-medium text-on-surface-variant" target="_blank">Haberi Oku</a>
+    </div>
+  </div>
+  
+  <!-- Bağlantı Katmanı -->
+  <a href="<%= link %>" title="<%= title %>" class="card-link"></a>
+  <div class="state-layer"></div>
+</div>

@@ -1,44 +1,37 @@
 <!DOCTYPE html>
 <html lang="tr">
   <head>
-    <%- include('../layouts/head', { title: 'Güncel Haberler | Emmi' }) %>
+    <%- include('../layouts/head', { title: 'Ana Sayfa | Emmi' }) %>
     <script src="/js/script.js" defer></script>
   </head>
   <body>
+    <!-- #Üst uygulama çubuğu -->
     <%- include("../partials/top_app_bar") %>
 
     <main class="main">
-      <article class="page current-news-page">
+      <!-- #Home -->
+      <article class="page home-page">
         <div class="container">
           <h2 class="headline-small page-title text-on-surface">
-            Güncel Haberler
+            Güncel blog paylaşımları
           </h2>
           <div class="blog-list">
-            <% if (news.length) { %> <% news.forEach(item => { %>
-            <div class="card">
-              <h3 class="card-title">
-                <a href="<%= item.link %>" target="_blank"><%= item.title %></a>
-              </h3>
-              <div class="card-content">
-                <div class="card-description">
-                  <!-- HTML içeriğini güvenli bir şekilde yerleştiriyoruz -->
-                  <%- item.summary %>
-                  <!-- %> ile yerleştiriyoruz -->
-                </div>
-                <small class="card-date">
-                  Yayınlanma Tarihi: <%= new
-                  Date(item.published).toLocaleString("tr-TR") %>
-                </small>
-              </div>
-            </div>
-            <% }) %> <% } else { %>
-            <p>Henüz güncel haber bulunmamaktadır.</p>
+            <% if (locals.articles && locals.articles.length > 0) { %> <%
+            locals.articles.forEach(article => { %>
+            <!-- Include the card partial for each article -->
+            <%- include('../partials/vericard', { article }) %> <% }) %> <% }
+            else { %>
+            <p>Henüz hiçbir haber bulunmamaktadır.</p>
             <% } %>
           </div>
+
+          <% if (locals.pagination.next || locals.pagination.prev) { %> <%-
+          include('../partials/pagination') %> <% } %>
         </div>
       </article>
     </main>
 
+    <!-- #Footer -->
     <%- include("../layouts/footer") %>
   </body>
 </html>
