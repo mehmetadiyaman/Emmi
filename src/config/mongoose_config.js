@@ -31,10 +31,12 @@ const ClientOptions = {
 const connectDB = async (connectionURI) => {
   try {
     await mongoose.connect(connectionURI, ClientOptions);
+    // Atlas bağlantısını doğrulamak için
+    console.log("Bağlantı URL'si:", mongoose.connection.host);
     console.log("MongoDB bağlandı");
   } catch (error) {
     console.error("MongoDB bağlanırken hata oluştu:", error.message);
-    throw error; // Hata yönetimi
+    throw error;
   }
 };
 
