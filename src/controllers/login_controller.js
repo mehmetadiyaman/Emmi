@@ -73,7 +73,7 @@ const postLogin = async (req, res) => {
       userAuthenticated: true,
       name: currentUser.name,
       username: currentUser.username,
-      profilePhotoURL: currentUser.profilePhoto?.url,
+      profilePhoto: currentUser.profilePhoto?.url,
     };
 
     // Başarıyla giriş yaptıktan sonra ana sayfaya yönlendirin
