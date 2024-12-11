@@ -22,7 +22,7 @@ const renderHome = async (req, res) => {
     //Oluşturulan toplam miktarı al
     const totalBlogs = await Blog.countDocuments();
     //sayfalandırma nesnesini al(pagination)
-    const pagination = getPagination("/", req.params, 1, totalBlogs);
+    const pagination = getPagination("/", req.params, 12, totalBlogs);
     //Veritabanında belirli alanları owner fiel ile doldurma
     const latestBlogs = await Blog.find()
       .select(

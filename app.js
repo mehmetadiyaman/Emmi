@@ -8,9 +8,14 @@
  * node modüller
  */
 const express = require("express");
-require("dotenv").config();
-const session = require("express-session"); // express-session kullanımı
+const session = require("express-session");
 const MongoStore = require("connect-mongo");
+require("dotenv").config();
+
+/**
+ * ilk ekspres
+ */
+const app = express(); // Express uygulamasını önce oluştur
 
 /**
  * özel modüller
@@ -30,12 +35,6 @@ const dashboard = require("./src/routes/dashboard_route");
 const deleteBlog = require("./src/routes/blog_delete_route");
 const settings = require("./src/routes/settings_route");
 const categories = require("./src/routes/categories_route");
-const currentnews = require("./src/routes/current_news_route"); // currentnews modülünü doğru şekilde ekledik
-
-/**
- * ilk ekspres
- */
-const app = express();
 
 /**
  * görünüm kısmını ayarla
@@ -74,89 +73,37 @@ app.use(
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
-    store, // Doğru şekilde store kullanımı
+    store,
     cookie: {
       maxAge: Number(process.env.SESSION_MAX_AGE),
     },
   })
 );
 
-/**
- * kayıt sayfası
- */
+// Route'ları ekle
 app.use("/register", register);
-
-/**
- * giriş sayfası
- */
 app.use("/login", login);
-
-/**
- * Çıkış yap
- */
 app.use("/logout", logout);
-
-/**
- * Ana sayfa
- */
 app.use("/", home);
-
-/**
- *  Blog ayrıntı sayfası
- */
 app.use("/blogs", blogDetail);
-
-/**
- * Profil sayfası
- */
-
 app.use("/profile", profile);
-/**
- * kullanıcı yetkilendirmesi
- */
 app.use(userAuth);
-
-/**
- * Blog oluşturma sayfası
- */
 app.use("/createblog", createBlog);
-
-/**
- * Okuma listesi sayfası
- */
 app.use("/readinglist", readingList);
-
-/**
- * Blog güncelleme ve silme
- */
 app.use("/blogs", blogUpdate, deleteBlog);
-
-/**
- * Blog güncelleme
- */
 app.use("/dashboard", dashboard);
-
-/**
- * Kategori
- */
 app.use("/categories", categories);
-
-/**
- * Güncel Haberler
- */
-app.use("/currentnews", currentnews);
-
-/**
- * Blog güncelleme
- */
 app.use("/settings", settings);
+
+// Yeni haber route'unu ekle
+app.use("/", require("./src/routes/news_route")); // src klasörü içinde olduğunu varsayıyorum
 
 /**
  * başlama servisi
  */
 const PORT = process.env.PORT || 3001;
 const server = app.listen(PORT, async () => {
-  console.log(`Servis Dinleme Portu http://localhost:${PORT}`); // Düzeltildi
+  console.log(`Servis Dinleme Portu http://localhost:${PORT}`);
   await connectDB(process.env.MONGO_CONNECTION_URI);
 });
 
